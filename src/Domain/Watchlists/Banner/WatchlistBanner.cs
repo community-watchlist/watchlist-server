@@ -27,11 +27,9 @@ public class WatchlistBanner
     => new(id, watchlistId, originalFilename, fileUrl);
     
     public void Update(
-        WatchlistId userId,
         string originalFilename,
         string fileUrl)
     {
-        WatchlistId = userId;
         OriginalFileName = originalFilename;
         FileUrl = fileUrl;
     }
