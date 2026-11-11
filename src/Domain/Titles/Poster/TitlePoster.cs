@@ -27,11 +27,9 @@ public class TitlePoster
     => new(id, titleId, originalFilename, fileUrl);
 
     public void Update(
-        TitleId titleId,
         string originalFilename,
         string fileUrl)
     {
-        TitleId = titleId;
         OriginalFilename = originalFilename;
         FileUrl = fileUrl;
     }

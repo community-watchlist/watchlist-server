@@ -45,13 +45,11 @@ public class TitleProperties
             DateTime.UtcNow);
 
     public void Update(
-        TitleId titleId,
         string slug,
         float? scoreAverage,
         int? scoreCount,
         int? views)
     {
-        TitleId = titleId;
         Slug = slug;
         ScoreAverage = scoreAverage;
         ScoreCount = scoreCount ?? ScoreCount;
