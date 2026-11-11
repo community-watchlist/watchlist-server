@@ -1,4 +1,5 @@
-﻿using Domain.Users.Attributes;
+﻿using Domain.Languages;
+using Domain.Users.Attributes;
 
 namespace Domain.Users;
 
@@ -11,7 +12,7 @@ public class User
     public string? DisplayName { get; private set; }
     public string Email { get; private set; }
     public string? Bio { get; private set; }
-    //TODO: add language code
+    public LanguageCode Language { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
     public DateTime? DeletedAt { get; private set; }
@@ -25,6 +26,7 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
+        LanguageCode language,
         DateTime createdAt)
     {
         Id = id;
@@ -34,6 +36,7 @@ public class User
         DisplayName = displayName;
         Email = email;
         Bio = bio;
+        Language = language;
         CreatedAt = createdAt;
     }
     
@@ -45,8 +48,17 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
+        LanguageCode? language,
         UserAttributes? attributes)
-    => new(id, clerkId, role, username, displayName, email, bio, DateTime.UtcNow)
+    => new(id, 
+        clerkId, 
+        role, 
+        username, 
+        displayName, 
+        email, 
+        bio,
+        language ?? LanguageCode.English, 
+        DateTime.UtcNow)
     {
         Attributes = attributes
     };
@@ -56,12 +68,14 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
+        LanguageCode? language,
         UserAttributes? attributes)
     {
         Username = username;
         DisplayName = displayName;
         Email = email;
         Bio = bio;
+        Language = language ?? Language;
         Attributes = attributes;
         UpdatedAt = DateTime.UtcNow;
     }
