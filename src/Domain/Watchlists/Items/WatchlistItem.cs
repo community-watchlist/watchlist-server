@@ -74,7 +74,7 @@ public class WatchlistItem
         UpdatedAt = DateTime.UtcNow;
     }
     
-    public void Delete()
+    public void SoftDelete()
     {
         DeletedAt = DateTime.UtcNow;
     }
