@@ -44,6 +44,8 @@ public class LanguageCode : ValueObject
         };
     }
 
+    public override string ToString() => Value;
+    
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
