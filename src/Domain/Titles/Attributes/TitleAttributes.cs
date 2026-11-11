@@ -118,6 +118,44 @@ public class TitleAttributes
             socialLinks,
             streamingLinks,
             relations);
+
+    public void Update(
+        TitleRating? rating,
+        string? backdropImageUrl,
+        string? originalLanguage,
+        float? externalScore,
+        int? externalScoreCount,
+        DateTime? releaseDate,
+        decimal? externalPopularity,
+        int? runtime,
+        int? episodes,
+        string? mediaType,
+        int? averageRuntime,
+        AiredData? aired,
+        BroadcastData? broadcast,
+        List<Link>? alternativeLinks,
+        List<Link>? socialLinks,
+        List<Link>? streamingLinks,
+        List<Relation>? relations)
+    {
+        Rating = rating ?? Rating;
+        BackdropImageUrl = backdropImageUrl;
+        OriginalLanguage = originalLanguage;
+        ExternalScore = externalScore;
+        ExternalScoreCount = externalScoreCount;
+        ReleaseDate = releaseDate;
+        ExternalPopularity = externalPopularity;
+        Runtime = runtime;
+        Episodes = episodes;
+        MediaType = mediaType;
+        AverageRuntime = averageRuntime;
+        Aired = aired;
+        Broadcast = broadcast;
+        AlternativeLinks = alternativeLinks;
+        SocialLinks = socialLinks;
+        StreamingLinks = streamingLinks;
+        Relations = relations;
+    }
 }
 
 public record AiredData
@@ -141,7 +179,7 @@ public record Link
 
 public record Relation
 {
-    public string RelationType { get; set; }
+    public TitleRelationType TitleRelationType { get; set; }
     public string? OriginalTitle { get; set; }
     public string ExternalId { get; set; }
 }
