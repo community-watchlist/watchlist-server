@@ -2,7 +2,7 @@
 
 namespace Domain.Titles;
 
-public static class ReleaseStatusValues
+public static class TitleReleaseStatusValues
 {
     public const string NotYetReleased = "not_yet_released";
     public const string Cancelled = "cancelled";
@@ -11,18 +11,18 @@ public static class ReleaseStatusValues
     public const string Finished = "finished";
 }
 
-public class ReleaseStatus : ValueObject
+public class TitleReleaseStatus : ValueObject
 {
     private string Value { get; }
 
-    private ReleaseStatus(string type)
+    private TitleReleaseStatus(string type)
     {
         Value = type;
     }
 
-    public static ReleaseStatus From(string value)
+    public static TitleReleaseStatus From(string value)
     {
-        var type = new ReleaseStatus(value);
+        var type = new TitleReleaseStatus(value);
 
         if (!AllowedTypes.Contains(type))
         {
@@ -32,18 +32,18 @@ public class ReleaseStatus : ValueObject
         return type;
     }
 
-    public static ReleaseStatus NotYetReleased => new(ReleaseStatusValues.NotYetReleased);
-    public static ReleaseStatus Cancelled => new(ReleaseStatusValues.Cancelled);
-    public static ReleaseStatus Hiatus => new(ReleaseStatusValues.Hiatus);
-    public static ReleaseStatus Releasing => new(ReleaseStatusValues.Releasing);
-    public static ReleaseStatus Finished => new(ReleaseStatusValues.Finished);
+    public static TitleReleaseStatus NotYetReleased => new(TitleReleaseStatusValues.NotYetReleased);
+    public static TitleReleaseStatus Cancelled => new(TitleReleaseStatusValues.Cancelled);
+    public static TitleReleaseStatus Hiatus => new(TitleReleaseStatusValues.Hiatus);
+    public static TitleReleaseStatus Releasing => new(TitleReleaseStatusValues.Releasing);
+    public static TitleReleaseStatus Finished => new(TitleReleaseStatusValues.Finished);
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }
     
-    private static IEnumerable<ReleaseStatus> AllowedTypes
+    private static IEnumerable<TitleReleaseStatus> AllowedTypes
     {
         get
         {

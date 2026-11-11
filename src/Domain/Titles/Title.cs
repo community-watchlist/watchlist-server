@@ -10,7 +10,7 @@ public class Title
     public string ExternalId { get; private set; }
     public string OriginalTitle { get; private set; }
     public string? Overview { get; private set; }
-    public ReleaseStatus ReleaseStatus { get; private set; }
+    public TitleReleaseStatus TitleReleaseStatus { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
     public DateTime? DeletedAt { get; private set; }
@@ -24,7 +24,7 @@ public class Title
         string externalId,
         string originalTitle,
         string? overview,
-        ReleaseStatus releaseStatus,
+        TitleReleaseStatus titleReleaseStatus,
         DateTime createdAt)
     {
         Id = id;
@@ -33,7 +33,7 @@ public class Title
         ExternalId = externalId;
         OriginalTitle = originalTitle;
         Overview = overview;
-        ReleaseStatus = releaseStatus;
+        TitleReleaseStatus = titleReleaseStatus;
         CreatedAt = createdAt;
     }
 
@@ -44,7 +44,7 @@ public class Title
         string externalId,
         string originalTitle,
         string? overview,
-        ReleaseStatus? releaseStatus,
+        TitleReleaseStatus? releaseStatus,
         TitleAttributes? attributes)
         => new(
             id,
@@ -53,7 +53,7 @@ public class Title
             externalId,
             originalTitle,
             overview,
-            releaseStatus ?? ReleaseStatus.NotYetReleased,
+            releaseStatus ?? TitleReleaseStatus.NotYetReleased,
             DateTime.UtcNow)
         {
             Attributes = attributes
@@ -65,18 +65,23 @@ public class Title
         string externalId,
         string originalTitle,
         string? overview,
-        ReleaseStatus releaseStatus,
+        TitleReleaseStatus titleReleaseStatus,
         DateTime? fetchedAt,
-        TitleAttributes? attributes = null)
+        TitleAttributes? attributes)
     {
         Type = type;
         Provider = provider;
         ExternalId = externalId;
         OriginalTitle = originalTitle;
         Overview = overview;
-        ReleaseStatus = releaseStatus;
+        TitleReleaseStatus = titleReleaseStatus;
         Attributes = attributes;
         FetchedAt = fetchedAt;
         UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void SoftDelete()
+    {
+        DeletedAt = DateTime.UtcNow;
     }
 }
