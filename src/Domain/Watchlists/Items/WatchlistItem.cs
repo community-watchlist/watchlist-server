@@ -42,7 +42,7 @@ public class WatchlistItem
         WatchlistId watchlistId,
         TitleId titleId,
         WatchlistItemStatus status,
-        int progress,
+        int? progress,
         string? tags,
         string? notes,
         WatchlistItemAttributes? attributes)
@@ -51,7 +51,7 @@ public class WatchlistItem
             watchlistId,
             titleId,
             status,
-            progress,
+            progress ?? 0,
             tags,
             notes,
             DateTime.UtcNow)
@@ -61,13 +61,13 @@ public class WatchlistItem
 
     public void Update(
         WatchlistItemStatus status,
-        int progress,
+        int? progress,
         string? tags,
         string? notes,
         WatchlistItemAttributes? attributes)
     {
         Status = status;
-        Progress = progress;
+        Progress = progress ?? Progress;
         Tags = tags;
         Notes = notes;
         Attributes = attributes;
