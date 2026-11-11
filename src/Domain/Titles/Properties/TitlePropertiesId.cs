@@ -1,8 +1,8 @@
 ﻿namespace Domain.Titles.Properties;
 
-public class TitlePropertiesId(Guid Value)
+public record TitlePropertiesId(Guid Value)
 {
-    public static TitlePropertiesId Empty = new TitlePropertiesId(Guid.Empty);
-    public static TitlePropertiesId New() => new TitlePropertiesId(Guid.NewGuid());
+    public static TitlePropertiesId Empty = new(Guid.Empty);
+    public static TitlePropertiesId New() => new(Guid.NewGuid());
     public override string ToString() => Value.ToString();
 }

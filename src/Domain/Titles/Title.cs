@@ -9,7 +9,7 @@ public class Title
     public string Provider { get; private set; }
     public string ExternalId { get; private set; }
     public string OriginalTitle { get; private set; }
-    public string Overview { get; private set; }
+    public string? Overview { get; private set; }
     public ReleaseStatus ReleaseStatus { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
@@ -23,7 +23,7 @@ public class Title
         string provider,
         string externalId,
         string originalTitle,
-        string overview,
+        string? overview,
         ReleaseStatus releaseStatus,
         DateTime createdAt)
     {
@@ -43,7 +43,7 @@ public class Title
         string provider,
         string externalId,
         string originalTitle,
-        string overview,
+        string? overview,
         ReleaseStatus? releaseStatus,
         TitleAttributes? attributes)
         => new(
@@ -64,7 +64,7 @@ public class Title
         string provider,
         string externalId,
         string originalTitle,
-        string overview,
+        string? overview,
         ReleaseStatus releaseStatus,
         DateTime? fetchedAt,
         TitleAttributes? attributes = null)

@@ -5,8 +5,8 @@ public class TitleProperties
     public TitlePropertiesId Id { get; }
     public TitleId TitleId { get; private set; }
     public string Slug { get; private set; }
-    public float ScoreAverage { get; private set; }
-    public int ScoreCount { get; private set; }
+    public float? ScoreAverage { get; private set; }
+    public int? ScoreCount { get; private set; }
     public int Views { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
@@ -14,7 +14,7 @@ public class TitleProperties
         TitlePropertiesId id,
         TitleId titleId,
         string slug,
-        float scoreAverage,
+        float? scoreAverage,
         int scoreCount,
         int views,
         DateTime updatedAt)
@@ -32,30 +32,30 @@ public class TitleProperties
         TitlePropertiesId id,
         TitleId titleId,
         string slug,
-        float scoreAverage,
-        int scoreCount,
-        int views)
+        float? scoreAverage,
+        int? scoreCount,
+        int? views)
         => new(
             id,
             titleId,
             slug,
             scoreAverage,
-            scoreCount,
-            views,
+            scoreCount ?? 0,
+            views ?? 0,
             DateTime.UtcNow);
 
     public void Update(
         TitleId titleId,
         string slug,
-        float scoreAverage,
-        int scoreCount,
-        int views)
+        float? scoreAverage,
+        int? scoreCount,
+        int? views)
     {
         TitleId = titleId;
         Slug = slug;
         ScoreAverage = scoreAverage;
-        ScoreCount = scoreCount;
-        Views = views;
+        ScoreCount = scoreCount ?? ScoreCount;
+        Views = views ?? Views;
         UpdatedAt = DateTime.UtcNow;
     }
 }

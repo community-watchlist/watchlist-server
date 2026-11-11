@@ -12,39 +12,39 @@ public static class RelationTypeValues
     public const string Other = "other";
 }
 
-public class RelationType : ValueObject
+public class TitleRelationType : ValueObject
 {
     private string Value { get; }
 
-    private RelationType(string type)
+    private TitleRelationType(string type)
     {
         Value = type;
     }
 
-    public static RelationType From(string value)
+    public static TitleRelationType From(string value)
     {
-        var type = new RelationType(value);
+        var type = new TitleRelationType(value);
 
         if (!AllowedTypes.Contains(type))
         {
-            throw new ArgumentException($"Invalid release status: {value}");
+            throw new ArgumentException($"Invalid relation type: {value}");
         }
         
         return type;
     }
 
-    public static RelationType Sequel => new(RelationTypeValues.Sequel);
-    public static RelationType Prequel => new(RelationTypeValues.Prequel);
-    public static RelationType Adaptation => new(RelationTypeValues.Adaptation);
-    public static RelationType SideStory => new(RelationTypeValues.SideStory);
-    public static RelationType Other => new(RelationTypeValues.Other);
+    public static TitleRelationType Sequel => new(RelationTypeValues.Sequel);
+    public static TitleRelationType Prequel => new(RelationTypeValues.Prequel);
+    public static TitleRelationType Adaptation => new(RelationTypeValues.Adaptation);
+    public static TitleRelationType SideStory => new(RelationTypeValues.SideStory);
+    public static TitleRelationType Other => new(RelationTypeValues.Other);
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }
     
-    private static IEnumerable<RelationType> AllowedTypes
+    private static IEnumerable<TitleRelationType> AllowedTypes
     {
         get
         {
