@@ -22,9 +22,9 @@ public class User
         string clerkId, 
         UserRole role, 
         string username, 
-        string displayName, 
+        string? displayName, 
         string email, 
-        string bio, 
+        string? bio, 
         DateTime createdAt)
     {
         Id = id;
@@ -42,9 +42,9 @@ public class User
         string clerkId, 
         UserRole role, 
         string username, 
-        string displayName, 
+        string? displayName, 
         string email, 
-        string bio, 
+        string? bio, 
         UserAttributes? attributes = null)
     => new(id, clerkId, role, username, displayName, email, bio, DateTime.UtcNow)
     {
@@ -53,9 +53,9 @@ public class User
     
     public void Update(
         string username, 
-        string displayName, 
+        string? displayName, 
         string email, 
-        string bio, 
+        string? bio, 
         UserAttributes? attributes = null)
     {
         Username = username;
