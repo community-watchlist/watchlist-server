@@ -8,12 +8,12 @@ public class User
     public string ClerkId { get; private set; }
     public UserRole Role { get; private set; }
     public string Username { get; private set; }
-    public string DisplayName { get; private set; }
+    public string? DisplayName { get; private set; }
     public string Email { get; private set; }
-    public string Bio { get; private set; }
+    public string? Bio { get; private set; }
     //TODO: add language code
     public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
+    public DateTime? UpdatedAt { get; private set; }
     public DateTime? DeletedAt { get; private set; }
     public DateTime? LastSeenAt { get; private set; }
     public UserAttributes? Attributes { get; private set; }
