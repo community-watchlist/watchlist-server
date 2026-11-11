@@ -2,7 +2,7 @@
 
 public record UserBannerId(Guid Value)
 {
-    public static UserBannerId Empty = new UserBannerId(Guid.Empty);
-    public static UserBannerId New() => new UserBannerId(Guid.NewGuid());
+    public static UserBannerId Empty = new(Guid.Empty);
+    public static UserBannerId New() => new(Guid.NewGuid());
     public override string ToString() => Value.ToString();
 }

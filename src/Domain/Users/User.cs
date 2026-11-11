@@ -45,7 +45,7 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
-        UserAttributes? attributes = null)
+        UserAttributes? attributes)
     => new(id, clerkId, role, username, displayName, email, bio, DateTime.UtcNow)
     {
         Attributes = attributes
@@ -56,7 +56,7 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
-        UserAttributes? attributes = null)
+        UserAttributes? attributes)
     {
         Username = username;
         DisplayName = displayName;
@@ -71,7 +71,7 @@ public class User
         LastSeenAt = DateTime.UtcNow;
     }
     
-    public void Delete()
+    public void SoftDelete()
     {
         DeletedAt = DateTime.UtcNow;
     }
