@@ -33,7 +33,7 @@ public class TitleRating : ValueObject
 
         if (!AllowedTypes.Contains(type))
         {
-            throw new ArgumentException($"Invalid release status: {value}");
+            throw new ArgumentException($"Invalid title rating: {value}");
         }
         
         return type;
