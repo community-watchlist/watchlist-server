@@ -6,7 +6,7 @@ public class TitleProperties
     public TitleId TitleId { get; private set; }
     public string Slug { get; private set; }
     public float? ScoreAverage { get; private set; }
-    public int? ScoreCount { get; private set; }
+    public int ScoreCount { get; private set; }
     public int Views { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
@@ -52,8 +52,8 @@ public class TitleProperties
     {
         Slug = slug;
         ScoreAverage = scoreAverage;
-        ScoreCount = scoreCount ?? ScoreCount;
-        Views = views ?? Views;
+        ScoreCount = scoreCount ?? 0;
+        Views = views ?? 0;
         UpdatedAt = DateTime.UtcNow;
     }
 }

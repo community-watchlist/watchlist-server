@@ -25,6 +25,7 @@ public class Title
         string originalTitle,
         string? overview,
         TitleReleaseStatus titleReleaseStatus,
+        DateTime? fetchedAt,
         DateTime createdAt)
     {
         Id = id;
@@ -34,6 +35,7 @@ public class Title
         OriginalTitle = originalTitle;
         Overview = overview;
         TitleReleaseStatus = titleReleaseStatus;
+        FetchedAt = fetchedAt;
         CreatedAt = createdAt;
     }
 
@@ -45,6 +47,7 @@ public class Title
         string originalTitle,
         string? overview,
         TitleReleaseStatus? releaseStatus,
+        DateTime? fetchedAt,
         TitleAttributes? attributes)
         => new(
             id,
@@ -54,6 +57,7 @@ public class Title
             originalTitle,
             overview,
             releaseStatus ?? TitleReleaseStatus.NotYetReleased,
+            fetchedAt,
             DateTime.UtcNow)
         {
             Attributes = attributes
@@ -75,8 +79,8 @@ public class Title
         OriginalTitle = originalTitle;
         Overview = overview;
         TitleReleaseStatus = titleReleaseStatus;
-        Attributes = attributes;
         FetchedAt = fetchedAt;
+        Attributes = attributes;
         UpdatedAt = DateTime.UtcNow;
     }
 
