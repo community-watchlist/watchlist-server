@@ -7,6 +7,9 @@ public class UserScoreTitle
     public UserId UserId { get; }
     public TitleId TitleId { get; }
     public float Score { get; private set; }
+    
+    public User? User { get; } = null;
+    public Title? Title { get; } = null;
 
     private UserScoreTitle(UserId userId, TitleId titleId, float score)
     {

@@ -1,5 +1,6 @@
 ﻿using Domain.Languages;
 using Domain.Users.Attributes;
+using Domain.Users.UserScores;
 
 namespace Domain.Users;
 
@@ -18,6 +19,9 @@ public class User
     public DateTime? DeletedAt { get; private set; }
     public DateTime? LastSeenAt { get; private set; }
     public UserAttributes? Attributes { get; private set; }
+    
+    public ICollection<UserScoreTitle>? UserScoreTitles { get; } = null;
+    public ICollection<UserScoreEpisode>? UserScoreEpisodes { get; } = null;
     
     private User(UserId id, 
         string clerkId, 
