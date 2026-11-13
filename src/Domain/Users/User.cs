@@ -12,12 +12,14 @@ public class User
     public string? DisplayName { get; private set; }
     public string Email { get; private set; }
     public string? Bio { get; private set; }
-    public LanguageCode Language { get; private set; }
+    public LanguageCode LanguageCode { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
     public DateTime? DeletedAt { get; private set; }
     public DateTime? LastSeenAt { get; private set; }
     public UserAttributes? Attributes { get; private set; }
+    
+    public Language? Language { get; } = null;
     
     private User(UserId id, 
         string clerkId, 
@@ -26,7 +28,7 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
-        LanguageCode language,
+        LanguageCode languageCode,
         DateTime createdAt)
     {
         Id = id;
@@ -36,7 +38,7 @@ public class User
         DisplayName = displayName;
         Email = email;
         Bio = bio;
-        Language = language;
+        LanguageCode = languageCode;
         CreatedAt = createdAt;
     }
     
@@ -48,7 +50,7 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
-        LanguageCode? language,
+        LanguageCode? languageCode,
         UserAttributes? attributes)
     => new(id, 
         clerkId, 
@@ -57,7 +59,7 @@ public class User
         displayName, 
         email, 
         bio,
-        language ?? LanguageCode.English, 
+        languageCode ?? LanguageCode.English, 
         DateTime.UtcNow)
     {
         Attributes = attributes
@@ -68,14 +70,14 @@ public class User
         string? displayName, 
         string email, 
         string? bio, 
-        LanguageCode? language,
+        LanguageCode? languageCode,
         UserAttributes? attributes)
     {
         Username = username;
         DisplayName = displayName;
         Email = email;
         Bio = bio;
-        Language = language ?? Language;
+        LanguageCode = languageCode ?? LanguageCode;
         Attributes = attributes;
         UpdatedAt = DateTime.UtcNow;
     }
