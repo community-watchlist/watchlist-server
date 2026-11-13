@@ -6,6 +6,8 @@ public class UserPicture
     public UserId UserId { get; private set; }
     public string OriginalFileName { get; private set; }
     public string FileUrl { get; private set; }
+    
+    public User? User { get; } = null;
 
     private UserPicture(
         UserPictureId id, 

@@ -1,5 +1,7 @@
 ﻿using Domain.Languages;
 using Domain.Users.Attributes;
+using Domain.Users.Banner;
+using Domain.Users.Picture;
 
 namespace Domain.Users;
 
@@ -20,6 +22,8 @@ public class User
     public UserAttributes? Attributes { get; private set; }
     
     public Language? Language { get; } = null;
+    public UserPicture? Picture { get; } = null;
+    public UserBanner? Banner { get; } = null;
     
     private User(UserId id, 
         string clerkId, 
