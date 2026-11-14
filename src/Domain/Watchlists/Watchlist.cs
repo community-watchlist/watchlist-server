@@ -14,7 +14,7 @@ public class Watchlist
     public User? User { get; } = null;
     public WatchlistBanner? Banner { get; } = null;
     
-    public ICollection<WatchlistItem>? Items { get; private set; } = null;
+    public ICollection<WatchlistItem>? Items { get; } = null;
     
     private Watchlist(WatchlistId id, UserId userId, bool isPublic, DateTime createdAt)
     {

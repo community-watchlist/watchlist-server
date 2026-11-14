@@ -7,7 +7,7 @@ public class WatchlistBanner
     public string OriginalFileName { get; private set; }
     public string FileUrl { get; private set; }
 
-    public Watchlist? Watchlist { get;  } = null;
+    public Watchlist? Watchlist { get; } = null;
 
     private WatchlistBanner(
         WatchlistBannerId id, 
