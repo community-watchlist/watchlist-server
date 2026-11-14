@@ -8,6 +8,9 @@ public class UserScoreEpisode
     public EpisodeId EpisodeId { get; }
     public float Score { get; private set; }
 
+    public User? User { get; } = null;
+    public Episode? Episode { get; } = null;
+    
     private UserScoreEpisode(UserId userId, EpisodeId episodeId, float score)
     {
         UserId = userId;

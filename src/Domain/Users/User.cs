@@ -1,5 +1,6 @@
 ﻿using Domain.Languages;
 using Domain.Users.Attributes;
+using Domain.Users.UserScores;
 using Domain.Users.Banner;
 using Domain.Users.Picture;
 
@@ -21,6 +22,8 @@ public class User
     public DateTime? LastSeenAt { get; private set; }
     public UserAttributes? Attributes { get; private set; }
     
+    public ICollection<UserScoreTitle>? UserScoreTitles { get; } = null;
+    public ICollection<UserScoreEpisode>? UserScoreEpisodes { get; } = null;
     public Language? Language { get; } = null;
     public UserPicture? Picture { get; } = null;
     public UserBanner? Banner { get; } = null;
