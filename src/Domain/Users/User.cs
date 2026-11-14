@@ -3,6 +3,7 @@ using Domain.Users.Attributes;
 using Domain.Users.UserScores;
 using Domain.Users.Banner;
 using Domain.Users.Picture;
+using Domain.Watchlists;
 
 namespace Domain.Users;
 
@@ -27,6 +28,7 @@ public class User
     public Language? Language { get; } = null;
     public UserPicture? Picture { get; } = null;
     public UserBanner? Banner { get; } = null;
+    public Watchlist? Watchlist { get; } = null;
     
     private User(UserId id, 
         string clerkId, 
