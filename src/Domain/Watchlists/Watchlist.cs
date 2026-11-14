@@ -11,8 +11,8 @@ public class Watchlist
     public bool IsPublic { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
-    public User? User { get; private set; } = null;
-    public WatchlistBanner? Banner { get; private set; } = null;
+    public User? User { get; } = null;
+    public WatchlistBanner? Banner { get; } = null;
     
     public ICollection<WatchlistItem>? Items { get; private set; } = null;
     
