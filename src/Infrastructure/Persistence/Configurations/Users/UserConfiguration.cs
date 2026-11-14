@@ -22,7 +22,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsUnique();
         
         builder.Property(x => x.Role)
-            .HasConversion<string>()
+            .HasConversion(x => x.Value, x => UserRole.From(x))
             .HasColumnType("varchar(32)")
             .IsRequired();
         
