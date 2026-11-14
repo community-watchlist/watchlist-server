@@ -22,7 +22,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsUnique();
         
         builder.Property(x => x.Role)
-            .HasConversion(x => x.Value, x => UserRole.From(x))
+            .HasConversion(x => x.ToString(), x => UserRole.From(x))
             .HasColumnType("varchar(32)")
             .IsRequired();
         
@@ -47,7 +47,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnType("varchar(255)");
 
         builder.Property(x => x.LanguageCode)
-            .HasConversion(x => x.Value, x => LanguageCode.From(x))
+            .HasConversion(x => x.ToString(), x => LanguageCode.From(x))
             .HasColumnType("varchar(10)")
             .IsRequired();
         
