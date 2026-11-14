@@ -4,18 +4,20 @@ public class TitlePoster
 {
     public TitlePosterId Id  { get; }
     public TitleId TitleId { get; private set; }
-    public string OriginalFilename { get; private set; }
+    public string OriginalFileName { get; private set; }
     public string FileUrl { get; private set; }
+
+    public Title? Title { get; } = null;
 
     private TitlePoster(
         TitlePosterId id,
         TitleId titleId,
-        string originalFilename,
+        string originalFileName,
         string fileUrl)
     {
         Id = id;
         TitleId = titleId;
-        OriginalFilename = originalFilename;
+        OriginalFileName = originalFileName;
         FileUrl = fileUrl;
     }
 
@@ -30,7 +32,7 @@ public class TitlePoster
         string originalFilename,
         string fileUrl)
     {
-        OriginalFilename = originalFilename;
+        OriginalFileName = originalFilename;
         FileUrl = fileUrl;
     }
 }

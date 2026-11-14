@@ -9,6 +9,8 @@ public class TitleProperties
     public int ScoreCount { get; private set; }
     public int Views { get; private set; }
     public DateTime UpdatedAt { get; private set; }
+    
+    public Title? Title { get; } = null;
 
     private TitleProperties(
         TitlePropertiesId id,

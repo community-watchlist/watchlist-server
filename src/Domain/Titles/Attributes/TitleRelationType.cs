@@ -99,6 +99,8 @@ public class TitleRelationType : ValueObject
         yield return Value;
     }
     
+    public override string ToString() => Value;
+    
     private static IEnumerable<TitleRelationType> AllowedTypes
     {
         get

@@ -43,6 +43,8 @@ public class TitleReleaseStatus : ValueObject
         yield return Value;
     }
     
+    public override string ToString() => Value;
+    
     private static IEnumerable<TitleReleaseStatus> AllowedTypes
     {
         get
