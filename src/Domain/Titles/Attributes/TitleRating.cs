@@ -62,6 +62,8 @@ public class TitleRating : ValueObject
         yield return Value;
     }
     
+    public override string ToString() => Value;
+    
     private static IEnumerable<TitleRating> AllowedTypes
     {
         get

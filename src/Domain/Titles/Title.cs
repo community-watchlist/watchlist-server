@@ -1,4 +1,7 @@
-﻿using Domain.Titles.Attributes;
+﻿using Domain.Episodes;
+using Domain.Titles.Attributes;
+using Domain.Titles.Poster;
+using Domain.Titles.Properties;
 
 namespace Domain.Titles;
 
@@ -16,6 +19,12 @@ public class Title
     public DateTime? DeletedAt { get; private set; }
     public DateTime? FetchedAt { get; private set; }
     public TitleAttributes? Attributes { get; private set; }
+
+    public TitleProperties? Properties { get; } = null;
+    public TitlePoster? Poster { get; } = null;
+    // TODO: add Episodes
+    // TODO: add Translations
+    // TODO: add Genres
 
     private Title(
         TitleId id,

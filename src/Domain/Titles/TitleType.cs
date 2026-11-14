@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Domain.Common;
+﻿using Domain.Common;
 
 namespace Domain.Titles;
 
@@ -39,6 +38,8 @@ public class TitleType : ValueObject
     {
         yield return Value;
     }
+    
+    public override string ToString() => Value;
     
     private static IEnumerable<TitleType> AllowedTypes
     {

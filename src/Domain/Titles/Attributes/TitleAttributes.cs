@@ -167,7 +167,7 @@ public record AiredData
 public record BroadcastData
 {
     // TODO: make an enum for weekdays
-    public string Day { get; set; }
+    public string WeekDay { get; set; }
     public string? Time { get; set; }
 }
 
