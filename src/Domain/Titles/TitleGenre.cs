@@ -7,6 +7,9 @@ public class TitleGenre
     public TitleId TitleId { get; }
     public GenreId GenreId { get; }
 
+    public Title? Title { get; } = null;
+    public Genre? Genre { get; } = null;
+    
     private TitleGenre(TitleId titleId, GenreId genreId)
     {
         TitleId = titleId;
