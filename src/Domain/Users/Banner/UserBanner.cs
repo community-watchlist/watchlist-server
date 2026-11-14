@@ -6,6 +6,8 @@ public class UserBanner
     public UserId UserId { get; private set; }
     public string OriginalFileName { get; private set; }
     public string FileUrl { get; private set; }
+    
+    public User? User { get; } = null;
 
      private UserBanner(
         UserBannerId id, 
