@@ -11,7 +11,7 @@ public class LanguageConfiguration : IEntityTypeConfiguration<Language>
         builder.HasKey(x => x.Code);
         
         builder.Property(x => x.Code)
-            .HasConversion(x => x.Value, x => LanguageCode.From(x))
+            .HasConversion(x => x.ToString(), x => LanguageCode.From(x))
             .HasColumnType("varchar(10)")
             .IsRequired();
         

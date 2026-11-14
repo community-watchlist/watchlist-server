@@ -1,10 +1,14 @@
-﻿namespace Domain.Genres;
+﻿using Domain.Titles;
+
+namespace Domain.Genres;
 
 public class Genre
 {
     public GenreId Id { get; }
     public string Name { get; private set; }
     public DateTime CreatedAt { get; private set; }
+
+    public ICollection<TitleGenre>? TitleGenres { get; } = null;
 
     private Genre(GenreId id, string name, DateTime createdAt)
     {
