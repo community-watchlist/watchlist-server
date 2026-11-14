@@ -22,7 +22,7 @@ public class Title
 
     public TitleProperties? Properties { get; } = null;
     public TitlePoster? Poster { get; } = null;
-    public Genre? Genre { get; } = null;
+    public ICollection<TitleGenre>? TitleGenres { get; } = null;
     // TODO: add Episodes
     // TODO: add Translations
 
