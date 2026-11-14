@@ -13,7 +13,7 @@ public static class WatchlistItemStatusValues
 
 public sealed class WatchlistItemStatus : ValueObject
 {
-    public string Value { get; }
+    private string Value { get; }
 
     private WatchlistItemStatus(string value)
     {

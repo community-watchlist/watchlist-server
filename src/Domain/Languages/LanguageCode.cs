@@ -12,7 +12,7 @@ public static class LanguageCodeValues
 
 public class LanguageCode : ValueObject
 {
-    public string Value { get; }
+    private string Value { get; }
 
     private LanguageCode(string value)
     {

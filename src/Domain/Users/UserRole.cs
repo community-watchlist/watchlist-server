@@ -10,7 +10,7 @@ public static class UserRoleValues
 
 public class UserRole : ValueObject
 {
-    public string Value { get; }
+    private string Value { get; }
     
     private UserRole(string value)
     {
@@ -36,6 +36,8 @@ public class UserRole : ValueObject
     {
         yield return Value;
     }
+    
+    public override string ToString() => Value;
     
     private static IEnumerable<UserRole> AllowedRoles
     {

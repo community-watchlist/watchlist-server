@@ -1,4 +1,6 @@
 ﻿using Domain.Users;
+using Domain.Watchlists.Banner;
+using Domain.Watchlists.Items;
 
 namespace Domain.Watchlists;
 
@@ -9,6 +11,11 @@ public class Watchlist
     public bool IsPublic { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
+    public User? User { get; } = null;
+    public WatchlistBanner? Banner { get; } = null;
+    
+    public ICollection<WatchlistItem>? Items { get; } = null;
+    
     private Watchlist(WatchlistId id, UserId userId, bool isPublic, DateTime createdAt)
     {
         Id = id;
@@ -19,9 +26,8 @@ public class Watchlist
     
     public static Watchlist New(
         WatchlistId id, 
-        UserId userId, 
-        bool isPublic)
-    => new(id, userId, isPublic, DateTime.UtcNow);
+        UserId userId)
+    => new(id, userId, true, DateTime.UtcNow);
     
     public void Update(
         bool isPublic)

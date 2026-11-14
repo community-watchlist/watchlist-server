@@ -16,6 +16,9 @@ public class WatchlistItem
     public DateTime? UpdatedAt { get; private set; }
     public DateTime? DeletedAt { get; private set; }
     public WatchlistItemAttributes? Attributes { get; private set; }
+    
+    public Watchlist? Watchlist { get; } = null;
+    public Title? Title { get; } = null;
 
     private WatchlistItem(
         WatchlistItemId id, 
