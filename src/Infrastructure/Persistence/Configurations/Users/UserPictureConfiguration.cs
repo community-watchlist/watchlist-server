@@ -28,7 +28,7 @@ public class UserPictureConfiguration : IEntityTypeConfiguration<UserPicture>
 
         builder.HasOne(x => x.User)
             .WithOne(x => x.Picture)
-            .HasForeignKey<UserBanner>(x => x.UserId)
+            .HasForeignKey<UserPicture>(x => x.UserId)
             .HasConstraintName("fk_user_pictures_user_id")
             .OnDelete(DeleteBehavior.Cascade);
     }
