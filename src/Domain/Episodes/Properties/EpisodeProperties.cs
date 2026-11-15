@@ -8,7 +8,8 @@ public class EpisodeProperties
     public float? ScoreAverage { get; private set; }
     public int ScoreCount { get; private set; }
     public int Views { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime? UpdatedAt { get; private set; }
 
     public Episode? Episode { get; } = null;
     
@@ -19,7 +20,7 @@ public class EpisodeProperties
         float? scoreAverage,
         int scoreCount,
         int views,
-        DateTime updatedAt)
+        DateTime createdAt)
     {
         Id = id;
         EpisodeId = episodeId;
@@ -27,7 +28,7 @@ public class EpisodeProperties
         ScoreAverage = scoreAverage;
         ScoreCount = scoreCount;
         Views = views;
-        UpdatedAt = updatedAt;
+        CreatedAt = createdAt;
     }
 
     public static EpisodeProperties New(
