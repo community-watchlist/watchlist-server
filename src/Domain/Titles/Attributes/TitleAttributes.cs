@@ -190,7 +190,7 @@ public class BroadcastData
         => new(weekDay, time);
 }
 
-public record Link
+public class Link
 {
     public string? SiteName { get; set; }
     public string Url { get; set; }
@@ -205,7 +205,7 @@ public record Link
         => new(siteName, url);
 }
 
-public record Relation
+public class Relation
 {
     public TitleRelationType TitleRelationType { get; set; }
     public string? OriginalTitle { get; set; }

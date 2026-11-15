@@ -64,7 +64,7 @@ public class EpisodeAttributes
     }
 }
 
-public record Link
+public class Link
 {
     public string? SiteName { get; set; }
     public string Url { get; set; }
