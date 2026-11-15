@@ -10,6 +10,8 @@ public class EpisodeProperties
     public int Views { get; private set; }
     public DateTime UpdatedAt { get; private set; }
 
+    public Episode? Episode { get; } = null;
+    
     private EpisodeProperties(
         EpisodePropertiesId id,
         EpisodeId episodeId,
