@@ -7,20 +7,23 @@ public class EpisodeTranslation
     public EpisodeTranslationId Id { get; }
     public EpisodeId EpisodeId { get; }
     public LanguageCode LanguageCode { get; }   
-    public string Name { get; private set; }
+    public string TranslatedTitle { get; private set; }
     public string? Overview { get; private set; }
 
+    public Episode? Episode { get; } = null;
+    public Language? Language { get; } = null;
+    
     private EpisodeTranslation(
         EpisodeTranslationId id,
         EpisodeId episodeId,
         LanguageCode languageCode,
-        string name,
+        string translatedTitle,
         string? overview)
     {
         Id = id;
         EpisodeId = episodeId;
         LanguageCode = languageCode;
-        Name = name;
+        TranslatedTitle = translatedTitle;
         Overview = overview;
     }
     
@@ -28,13 +31,13 @@ public class EpisodeTranslation
         EpisodeTranslationId id,
         EpisodeId episodeId,
         LanguageCode languageCode,
-        string name,
+        string translatedTitle,
         string? overview) 
-        => new(id, episodeId, languageCode, name, overview);
+        => new(id, episodeId, languageCode, translatedTitle, overview);
 
-    public void Update(string name, string? overview)
+    public void Update(string translatedTitle, string? overview)
     {
-        Name = name;
+        TranslatedTitle = translatedTitle;
         Overview = overview;
     }
 }

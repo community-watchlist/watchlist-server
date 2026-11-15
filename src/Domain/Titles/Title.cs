@@ -2,6 +2,7 @@
 using Domain.Titles.Attributes;
 using Domain.Titles.Poster;
 using Domain.Titles.Properties;
+using Domain.Titles.Translations;
 
 namespace Domain.Titles;
 
@@ -24,7 +25,7 @@ public class Title
     public TitlePoster? Poster { get; } = null;
     public ICollection<TitleGenre>? TitleGenres { get; } = null;
     public ICollection<Episode>? Episodes { get; } = null;
-    // TODO: add Translations
+    public ICollection<TitleTranslation>? TitleTranslations { get; } = null;
 
     private Title(
         TitleId id,

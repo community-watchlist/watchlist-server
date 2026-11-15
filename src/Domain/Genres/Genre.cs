@@ -1,30 +1,32 @@
-﻿using Domain.Titles;
+﻿using Domain.Genres.Translations;
+using Domain.Titles;
 
 namespace Domain.Genres;
 
 public class Genre
 {
     public GenreId Id { get; }
-    public string Name { get; private set; }
+    public string OriginalName { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
     public ICollection<TitleGenre>? TitleGenres { get; } = null;
-
-    private Genre(GenreId id, string name, DateTime createdAt)
+    public ICollection<GenreTranslation>? GenreTranslations { get; } = null;
+    
+    private Genre(GenreId id, string originalName, DateTime createdAt)
     {
         Id = id;
-        Name = name;
+        OriginalName = originalName;
         CreatedAt = createdAt;
     }
 
     public static Genre New(
         GenreId id,
-        string name,
+        string originalName,
         DateTime createdAt)
-        => new(id, name, DateTime.UtcNow);
+        => new(id, originalName, DateTime.UtcNow);
 
-    public void Update(string name)
+    public void Update(string originalName)
     {
-        Name = name;
+        OriginalName = originalName;
     }
 }

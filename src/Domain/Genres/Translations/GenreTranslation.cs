@@ -7,29 +7,32 @@ public class GenreTranslation
     public GenreTranslationId Id { get; }
     public GenreId GenreId { get; }
     public LanguageCode LanguageCode { get; }   
-    public string Name { get; private set; }
+    public string TranslatedName { get; private set; }
 
+    public Genre? Genre { get; } = null;
+    public Language? Language { get; } = null;
+    
     private GenreTranslation(
         GenreTranslationId id,
         GenreId genreId,
         LanguageCode languageCode,
-        string name)
+        string translatedName)
     {
         Id = id;
         GenreId = genreId;
         LanguageCode = languageCode;
-        Name = name;
+        TranslatedName = translatedName;
     }
     
     public static GenreTranslation New(
         GenreTranslationId id,
         GenreId genreId,
         LanguageCode languageCode,
-        string name) 
-        => new(id, genreId, languageCode, name);
+        string translatedName) 
+        => new(id, genreId, languageCode, translatedName);
 
-    public void Update(string name)
+    public void Update(string translatedName)
     {
-        Name = name;
+        TranslatedName = translatedName;
     }
 }

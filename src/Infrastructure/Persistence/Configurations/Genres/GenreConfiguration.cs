@@ -13,11 +13,11 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
         builder.Property(x => x.Id)
             .HasConversion(x => x.Value, x => new GenreId(x));
         
-        builder.Property(x => x.Name)
+        builder.Property(x => x.OriginalName)
             .HasColumnType("varchar(64)")
             .IsRequired();
         
-        builder.HasIndex(x => x.Name)
+        builder.HasIndex(x => x.OriginalName)
             .IsUnique();
         
         builder.Property(x => x.CreatedAt)
