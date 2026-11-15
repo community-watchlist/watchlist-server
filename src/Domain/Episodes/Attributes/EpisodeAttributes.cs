@@ -15,17 +15,13 @@ public class EpisodeAttributes
         string? posterUrl,
         DateTime? releaseDate,
         float? externalScore,
-        int? externalScoreCount,
-        List<Link>? alternativeLinks,
-        List<Link>? streamingLinks)
+        int? externalScoreCount)
     {
         Runtime = runtime;
         PosterUrl = posterUrl;
         ReleaseDate = releaseDate;
         ExternalScore = externalScore;
         ExternalScoreCount = externalScoreCount;
-        AlternativeLinks = alternativeLinks;
-        StreamingLinks = streamingLinks;
     }
 
     public static EpisodeAttributes New(
@@ -41,9 +37,11 @@ public class EpisodeAttributes
             posterUrl,
             releaseDate,
             externalScore,
-            externalScoreCount,
-            alternativeLinks,
-            streamingLinks);
+            externalScoreCount)
+        {
+            AlternativeLinks = alternativeLinks,
+            StreamingLinks = streamingLinks
+        };
 
     public void Update(
         int? runtime,

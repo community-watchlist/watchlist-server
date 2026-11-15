@@ -19,7 +19,7 @@ public class EpisodeConfiguration : IEntityTypeConfiguration<Episode>
             .HasConversion(x => x.Value, x => new TitleId(x));
         
         builder.HasOne(x => x.Title)
-            .WithMany()
+            .WithMany(x => x.Episodes)
             .HasForeignKey(x => x.TitleId)
             .HasConstraintName("fk_episodes_title_id")
             .OnDelete(DeleteBehavior.Restrict);
@@ -70,8 +70,6 @@ public class EpisodeConfiguration : IEntityTypeConfiguration<Episode>
             attributesBuilder.Property(x => x.ExternalScoreCount).HasJsonPropertyName("external_score_count");
             attributesBuilder.OwnsMany<Link>(x => x.AlternativeLinks, alternativeLinksAttributesBuilder =>
             {
-                alternativeLinksAttributesBuilder.ToJson("alternative_links");
-                
                 alternativeLinksAttributesBuilder.Property(x => x.SiteName).HasJsonPropertyName("site_name");
                 alternativeLinksAttributesBuilder.Property(x => x.Url)
                     .HasJsonPropertyName("url")
@@ -79,8 +77,6 @@ public class EpisodeConfiguration : IEntityTypeConfiguration<Episode>
             });
             attributesBuilder.OwnsMany<Link>(x => x.StreamingLinks, streamingLinksAttributesBuilder =>
             {
-                streamingLinksAttributesBuilder.ToJson("streaming_links");
-                
                 streamingLinksAttributesBuilder.Property(x => x.SiteName).HasJsonPropertyName("site_name");
                 streamingLinksAttributesBuilder.Property(x => x.Url)
                     .HasJsonPropertyName("url")

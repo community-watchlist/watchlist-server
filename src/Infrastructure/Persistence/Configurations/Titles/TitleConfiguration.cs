@@ -1,4 +1,5 @@
-﻿using Domain.Titles;
+﻿using Domain.Common;
+using Domain.Titles;
 using Domain.Titles.Attributes;
 using Infrastructure.Persistence.Converters;
 using Microsoft.EntityFrameworkCore;
@@ -76,24 +77,20 @@ public class TitleConfiguration : IEntityTypeConfiguration<Title>
             attributesBuilder.Property(x => x.AverageRuntime).HasJsonPropertyName("average_runtime");
             attributesBuilder.OwnsOne<AiredData>(x => x.Aired, airedAttributesBuilder =>
             {
-                airedAttributesBuilder.ToJson("aired");
-                
                 airedAttributesBuilder.Property(x => x.From).HasJsonPropertyName("from");
                 airedAttributesBuilder.Property(x => x.To).HasJsonPropertyName("to");
             });
             attributesBuilder.OwnsOne<BroadcastData>(x => x.Broadcast, broadcastAttributesBuilder =>
             {
-                broadcastAttributesBuilder.ToJson("broadcast");
-                
                 broadcastAttributesBuilder.Property(x => x.WeekDay)
                     .HasJsonPropertyName("weekday")
+                    .HasConversion(x => x.ToString(), x => WeekDay.From(x))
                     .IsRequired();
                 broadcastAttributesBuilder.Property(x => x.Time).HasJsonPropertyName("time");
             });
             attributesBuilder.OwnsMany<Link>(x => x.AlternativeLinks, alternativeLinksAttributesBuilder =>
             {
-                alternativeLinksAttributesBuilder.ToJson("alternative_links");
-                
+             
                 alternativeLinksAttributesBuilder.Property(x => x.SiteName).HasJsonPropertyName("site_name");
                 alternativeLinksAttributesBuilder.Property(x => x.Url)
                     .HasJsonPropertyName("url")
@@ -101,8 +98,6 @@ public class TitleConfiguration : IEntityTypeConfiguration<Title>
             });
             attributesBuilder.OwnsMany<Link>(x => x.StreamingLinks, streamingLinksAttributesBuilder =>
             {
-                streamingLinksAttributesBuilder.ToJson("streaming_links");
-                
                 streamingLinksAttributesBuilder.Property(x => x.SiteName).HasJsonPropertyName("site_name");
                 streamingLinksAttributesBuilder.Property(x => x.Url)
                     .HasJsonPropertyName("url")
@@ -110,8 +105,6 @@ public class TitleConfiguration : IEntityTypeConfiguration<Title>
             });
             attributesBuilder.OwnsMany<Link>(x => x.SocialLinks, socialLinksAttributesBuilder =>
             {
-                socialLinksAttributesBuilder.ToJson("social_links");
-                
                 socialLinksAttributesBuilder.Property(x => x.SiteName).HasJsonPropertyName("site_name");
                 socialLinksAttributesBuilder.Property(x => x.Url)
                     .HasJsonPropertyName("url")
@@ -119,8 +112,6 @@ public class TitleConfiguration : IEntityTypeConfiguration<Title>
             });
             attributesBuilder.OwnsMany<Relation>(x => x.Relations, relationAttributesBuilder =>
             {
-                relationAttributesBuilder.ToJson("relations");
-
                 relationAttributesBuilder.Property(x => x.TitleRelationType)
                     .HasConversion(x => x.ToString(), x => TitleRelationType.From(x))
                     .HasJsonPropertyName("relation_type")

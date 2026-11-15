@@ -57,13 +57,7 @@ public class TitleAttributes
         int? runtime,
         int? episodes,
         string? mediaType,
-        int? averageRuntime,
-        AiredData? aired,
-        BroadcastData? broadcast,
-        List<Link>? alternativeLinks,
-        List<Link>? socialLinks,
-        List<Link>? streamingLinks,
-        List<Relation>? relations)
+        int? averageRuntime)
     {
         Rating = rating;
         BackdropImageUrl = backdropImageUrl;
@@ -76,12 +70,6 @@ public class TitleAttributes
         Episodes = episodes;
         MediaType = mediaType;
         AverageRuntime = averageRuntime;
-        Aired = aired;
-        Broadcast = broadcast;
-        AlternativeLinks = alternativeLinks;
-        SocialLinks = socialLinks;
-        StreamingLinks = streamingLinks;
-        Relations = relations;
     }
 
     public static TitleAttributes New(
@@ -113,13 +101,15 @@ public class TitleAttributes
             runtime,
             episodes,
             mediaType,
-            averageRuntime,
-            aired,
-            broadcast,
-            alternativeLinks,
-            socialLinks,
-            streamingLinks,
-            relations);
+            averageRuntime)
+        {
+            Aired = aired,
+            Broadcast = broadcast,
+            AlternativeLinks = alternativeLinks,
+            SocialLinks = socialLinks,
+            StreamingLinks = streamingLinks,
+            Relations = relations
+        };
 
     public void Update(
         TitleRating? rating,
