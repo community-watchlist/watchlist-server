@@ -19,7 +19,7 @@ public class TitleTranslationConfiguration : IEntityTypeConfiguration<TitleTrans
             .IsRequired();
         
         builder.HasOne(x => x.Title)
-            .WithMany()
+            .WithMany(x => x.TitleTranslations)
             .HasForeignKey(x => x.TitleId)
             .HasConstraintName("fk_title_translation_title_id")
             .OnDelete(DeleteBehavior.Restrict);

@@ -19,7 +19,7 @@ public class EpisodeTranslationConfiguration : IEntityTypeConfiguration<EpisodeT
             .IsRequired();
         
         builder.HasOne(x => x.Episode)
-            .WithMany()
+            .WithMany(x => x.EpisodeTranslations)
             .HasForeignKey(x => x.EpisodeId)
             .HasConstraintName("fk_episode_translation_episode_id")
             .OnDelete(DeleteBehavior.Restrict);

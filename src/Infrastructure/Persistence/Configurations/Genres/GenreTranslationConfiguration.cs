@@ -19,7 +19,7 @@ public class GenreTranslationConfiguration : IEntityTypeConfiguration<GenreTrans
             .IsRequired();
         
         builder.HasOne(x => x.Genre)
-            .WithMany()
+            .WithMany(x => x.GenreTranslations)
             .HasForeignKey(x => x.GenreId)
             .HasConstraintName("fk_genre_translation_genre_id")
             .OnDelete(DeleteBehavior.Restrict);
