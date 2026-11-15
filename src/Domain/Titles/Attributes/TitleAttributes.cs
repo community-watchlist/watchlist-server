@@ -1,4 +1,6 @@
-﻿namespace Domain.Titles.Attributes;
+﻿using Domain.Common;
+
+namespace Domain.Titles.Attributes;
 
 public class TitleAttributes
 {
@@ -158,28 +160,64 @@ public class TitleAttributes
     }
 }
 
-public record AiredData
+public class AiredData
 {
     public DateTime? From { get; set; }
     public DateTime? To { get; set; }
+
+    private AiredData(DateTime? from, DateTime? to)
+    {
+        From = from;
+        To = to;
+    }
+
+    public static AiredData New(DateTime? from, DateTime? to)
+        => new(from, to);
 }
 
-public record BroadcastData
+public class BroadcastData
 {
-    // TODO: make an enum for weekdays
-    public string WeekDay { get; set; }
+    public WeekDay WeekDay { get; set; }
     public string? Time { get; set; }
+
+    private BroadcastData(WeekDay weekDay, string? time)
+    {
+        WeekDay = weekDay;
+        Time = time;
+    }
+    
+    public static BroadcastData New(WeekDay weekDay, string? time)
+        => new(weekDay, time);
 }
 
-public record Link
+public class Link
 {
     public string? SiteName { get; set; }
     public string Url { get; set; }
+
+    private Link(string? siteName, string url)
+    {
+        SiteName = siteName;
+        Url = url;
+    }
+    
+    public static Link New(string? siteName, string url)
+        => new(siteName, url);
 }
 
-public record Relation
+public class Relation
 {
     public TitleRelationType TitleRelationType { get; set; }
     public string? OriginalTitle { get; set; }
     public string ExternalId { get; set; }
+
+    private Relation(TitleRelationType titleRelationType, string? originalTitle, string externalId)
+    {
+        TitleRelationType = titleRelationType;
+        OriginalTitle = originalTitle;
+        ExternalId = externalId;
+    }
+    
+    public static Relation New(TitleRelationType titleRelationType, string? originalTitle, string externalId)
+        => new(titleRelationType, originalTitle, externalId);
 }
