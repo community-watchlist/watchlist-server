@@ -7,10 +7,11 @@ public class GenreTranslation
     public GenreTranslationId Id { get; }
     public GenreId GenreId { get; }
     public LanguageCode LanguageCode { get; }   
-    public string Name { get; private set; }
-
     public string TranslatedName { get; private set; }
 
+    public Genre? Genre { get; } = null;
+    public Language? Language { get; } = null;
+    
     private GenreTranslation(
         GenreTranslationId id,
         GenreId genreId,

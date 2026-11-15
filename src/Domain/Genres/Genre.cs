@@ -1,4 +1,5 @@
-﻿using Domain.Titles;
+﻿using Domain.Genres.Translations;
+using Domain.Titles;
 
 namespace Domain.Genres;
 
@@ -9,7 +10,8 @@ public class Genre
     public DateTime CreatedAt { get; private set; }
 
     public ICollection<TitleGenre>? TitleGenres { get; } = null;
-
+    public ICollection<GenreTranslation>? GenreTranslations { get; } = null;
+    
     private Genre(GenreId id, string originalName, DateTime createdAt)
     {
         Id = id;

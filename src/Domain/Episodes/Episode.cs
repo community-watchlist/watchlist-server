@@ -1,5 +1,6 @@
 ﻿using Domain.Episodes.Attributes;
 using Domain.Episodes.Properties;
+using Domain.Episodes.Translations;
 using Domain.Titles;
 
 namespace Domain.Episodes;
@@ -21,7 +22,7 @@ public class Episode
 
     public Title? Title { get; } = null;
     public EpisodeProperties? EpisodeProperties { get; } = null;
-    // TODO: add Translations
+    public ICollection<EpisodeTranslation>? EpisodeTranslations { get; } = null;
     
     private Episode(
         EpisodeId id,

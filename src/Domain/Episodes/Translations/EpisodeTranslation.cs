@@ -10,6 +10,9 @@ public class EpisodeTranslation
     public string TranslatedTitle { get; private set; }
     public string? Overview { get; private set; }
 
+    public Episode? Episode { get; } = null;
+    public Language? Language { get; } = null;
+    
     private EpisodeTranslation(
         EpisodeTranslationId id,
         EpisodeId episodeId,
