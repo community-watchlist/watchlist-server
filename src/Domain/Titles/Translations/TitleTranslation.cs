@@ -7,20 +7,20 @@ public class TitleTranslation
     public TitleTranslationId Id { get; }
     public TitleId TitleId { get; }
     public LanguageCode LanguageCode { get; }   
-    public string Name { get; private set; }
+    public string TranslatedTitle { get; private set; }
     public string? Overview { get; private set; }
 
     private TitleTranslation(
         TitleTranslationId id,
         TitleId titleId,
         LanguageCode languageCode,
-        string name,
+        string translatedTitle,
         string? overview)
     {
         Id = id;
         TitleId = titleId;
         LanguageCode = languageCode;
-        Name = name;
+        TranslatedTitle = translatedTitle;
         Overview = overview;
     }
     
@@ -28,13 +28,13 @@ public class TitleTranslation
         TitleTranslationId id,
         TitleId titleId,
         LanguageCode languageCode,
-        string name,
+        string translatedTitle,
         string? overview) 
-        => new(id, titleId, languageCode, name, overview);
+        => new(id, titleId, languageCode, translatedTitle, overview);
 
-    public void Update(string name, string? overview)
+    public void Update(string translatedTitle, string? overview)
     {
-        Name = name;
+        TranslatedTitle = translatedTitle;
         Overview = overview;
     }
 }
