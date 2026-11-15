@@ -1,4 +1,6 @@
-﻿namespace Domain.Titles.Attributes;
+﻿using Domain.Common;
+
+namespace Domain.Titles.Attributes;
 
 public class TitleAttributes
 {
@@ -175,17 +177,16 @@ public class AiredData
 
 public class BroadcastData
 {
-    // TODO: make an enum for weekdays
-    public string WeekDay { get; set; }
+    public WeekDay WeekDay { get; set; }
     public string? Time { get; set; }
 
-    private BroadcastData(string weekDay, string? time)
+    private BroadcastData(WeekDay weekDay, string? time)
     {
         WeekDay = weekDay;
         Time = time;
     }
     
-    public static BroadcastData New(string weekDay, string? time)
+    public static BroadcastData New(WeekDay weekDay, string? time)
         => new(weekDay, time);
 }
 
