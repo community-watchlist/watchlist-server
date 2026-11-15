@@ -43,9 +43,12 @@ public class EpisodePropertiesConfiguration : IEntityTypeConfiguration<EpisodePr
         builder.Property(x => x.Views)
             .IsRequired();
         
-        builder.Property(x => x.UpdatedAt)
+        builder.Property(x => x.CreatedAt)
             .HasConversion(new DateTimeUtcConverter())
             .HasDefaultValueSql("timezone('utc', now())")
             .IsRequired();
+
+        builder.Property(x => x.UpdatedAt)
+            .HasConversion(new DateTimeUtcConverter());
     }
 }

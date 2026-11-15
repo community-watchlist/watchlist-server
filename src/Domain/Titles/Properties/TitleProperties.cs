@@ -8,7 +8,8 @@ public class TitleProperties
     public float? ScoreAverage { get; private set; }
     public int ScoreCount { get; private set; }
     public int Views { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime? UpdatedAt { get; private set; }
     
     public Title? Title { get; } = null;
 
@@ -19,7 +20,7 @@ public class TitleProperties
         float? scoreAverage,
         int scoreCount,
         int views,
-        DateTime updatedAt)
+        DateTime createdAt)
     {
         Id = id;
         TitleId = titleId;
@@ -27,7 +28,7 @@ public class TitleProperties
         ScoreAverage = scoreAverage;
         ScoreCount = scoreCount;
         Views = views;
-        UpdatedAt = updatedAt;
+        CreatedAt = createdAt;
     }
 
     public static TitleProperties New(
