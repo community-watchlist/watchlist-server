@@ -68,4 +68,13 @@ public record Link
 {
     public string? SiteName { get; set; }
     public string Url { get; set; }
+    
+    private Link(string? siteName, string url)
+    {
+        SiteName = siteName;
+        Url = url;
+    }
+    
+    public static Link New(string? siteName, string url)
+        => new(siteName, url);
 }
