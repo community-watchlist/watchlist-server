@@ -1,4 +1,4 @@
-﻿using Domain.Genres;
+﻿using Domain.Episodes;
 using Domain.Titles.Attributes;
 using Domain.Titles.Poster;
 using Domain.Titles.Properties;
@@ -23,7 +23,7 @@ public class Title
     public TitleProperties? Properties { get; } = null;
     public TitlePoster? Poster { get; } = null;
     public ICollection<TitleGenre>? TitleGenres { get; } = null;
-    // TODO: add Episodes
+    public ICollection<Episode>? Episodes { get; } = null;
     // TODO: add Translations
 
     private Title(

@@ -1,4 +1,5 @@
 ﻿using Domain.Episodes.Attributes;
+using Domain.Episodes.Properties;
 using Domain.Titles;
 
 namespace Domain.Episodes;
@@ -18,6 +19,10 @@ public class Episode
     public DateTime? FetchedAt { get; private set; }
     public EpisodeAttributes? Attributes { get; private set; }
 
+    public Title? Title { get; } = null;
+    public EpisodeProperties? EpisodeProperties { get; } = null;
+    // TODO: add Translations
+    
     private Episode(
         EpisodeId id,
         TitleId titleId,
