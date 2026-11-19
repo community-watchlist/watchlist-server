@@ -18,20 +18,22 @@ public class UserBannerRepository(ApplicationDbContext context) : IUserBannerRep
     public async Task<UserBanner> Add(UserBanner userBanner, CancellationToken cancellationToken)
     {
         await context.UserBanners.AddAsync(userBanner, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
         return userBanner;      
     }
 
     public async Task<UserBanner> Update(UserBanner userBanner, CancellationToken cancellationToken)
     {
         context.UserBanners.Update(userBanner);
-        await context.SaveChangesAsync(cancellationToken);
         return userBanner;     
     }
 
     public async Task Delete(UserBanner userBanner, CancellationToken cancellationToken)
     {
         context.UserBanners.Remove(userBanner);
+    }
+
+    public async Task SaveChanges(CancellationToken cancellationToken)
+    {
         await context.SaveChangesAsync(cancellationToken);     
     }
 }

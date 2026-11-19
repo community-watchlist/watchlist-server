@@ -10,4 +10,5 @@ public interface IUserBannerRepository
     Task<UserBanner> Add(UserBanner userBanner, CancellationToken cancellationToken);
     Task<UserBanner> Update(UserBanner userBanner, CancellationToken cancellationToken);
     Task Delete(UserBanner userBanner, CancellationToken cancellationToken);   
+    Task SaveChanges(CancellationToken cancellationToken);
 }

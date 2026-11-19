@@ -19,20 +19,22 @@ public class UserPictureRepository(ApplicationDbContext context) : IUserPictureR
     public async Task<UserPicture> Add(UserPicture userPicture, CancellationToken cancellationToken)
     {
         await context.UserPictures.AddAsync(userPicture, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
         return userPicture;       
     }
 
     public async Task<UserPicture> Update(UserPicture userPicture, CancellationToken cancellationToken)
     {
         context.UserPictures.Update(userPicture);
-        await context.SaveChangesAsync(cancellationToken);
         return userPicture;      
     }
 
     public async Task Delete(UserPicture userPicture, CancellationToken cancellationToken)
     {
         context.UserPictures.Remove(userPicture);
-        await context.SaveChangesAsync(cancellationToken);      
+    }
+
+    public async Task SaveChanges(CancellationToken cancellationToken)
+    {
+        await context.SaveChangesAsync(cancellationToken);     
     }
 }

@@ -10,4 +10,5 @@ public interface IUserPictureRepository
     Task<UserPicture> Add(UserPicture userPicture, CancellationToken cancellationToken);
     Task<UserPicture> Update(UserPicture userPicture, CancellationToken cancellationToken);
     Task Delete(UserPicture userPicture, CancellationToken cancellationToken);   
+    Task SaveChanges(CancellationToken cancellationToken);
 }
