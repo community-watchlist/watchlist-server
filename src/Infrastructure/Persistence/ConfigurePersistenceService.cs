@@ -32,7 +32,7 @@ public static class ConfigurePersistenceServices
         services.AddRepositories();
     }
 
-    public static void AddRepositories(this IServiceCollection services)
+    private static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<LanguageRepository>();
         services.AddScoped<ILanguageQueries>(provider => provider.GetRequiredService<LanguageRepository>());
