@@ -1,6 +1,6 @@
 ﻿using Domain.Languages;
 
-namespace Application.Common.Queries.Languages;
+namespace Application.Common.Interfaces.Queries.Languages;
 
 public interface ILanguageQueries
 {

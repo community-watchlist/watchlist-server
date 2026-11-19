@@ -1,4 +1,4 @@
-﻿using Application.Common.Queries.Languages;
+﻿using Application.Common.Interfaces.Queries.Languages;
 using Domain.Languages;
 using Microsoft.EntityFrameworkCore;
 

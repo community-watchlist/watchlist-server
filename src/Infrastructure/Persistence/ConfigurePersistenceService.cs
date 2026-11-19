@@ -1,4 +1,4 @@
-using Application.Common.Queries.Languages;
+using Application.Common.Interfaces.Queries.Languages;
 using Infrastructure.Persistence.Repositories.Languages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
