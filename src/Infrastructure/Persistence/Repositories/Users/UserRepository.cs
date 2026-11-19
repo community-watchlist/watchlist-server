@@ -15,7 +15,10 @@ public class UserRepository(ApplicationDbContext context) : IUserQueries, IUserR
 
     public async Task<Option<User>> GetById(UserId id, CancellationToken cancellationToken)
     {
-        var entity = await context.Users.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        var entity = await context.Users
+            .Include(x => x.Picture)
+            .Include(x => x.Banner)
+            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         return entity ?? Option<User>.None;
     }
 
@@ -27,7 +30,10 @@ public class UserRepository(ApplicationDbContext context) : IUserQueries, IUserR
 
     public async Task<Option<User>> GetByUsername(string username, CancellationToken cancellationToken)
     {
-        var entity = await context.Users.FirstOrDefaultAsync(x => x.Username == username, cancellationToken);
+        var entity = await context.Users
+            .Include(x => x.Picture)
+            .Include(x => x.Banner)
+            .FirstOrDefaultAsync(x => x.Username == username, cancellationToken);
         return entity ?? Option<User>.None;
     }
 
