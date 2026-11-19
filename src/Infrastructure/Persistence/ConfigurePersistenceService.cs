@@ -1,3 +1,5 @@
+using Application.Common.Queries.Languages;
+using Infrastructure.Persistence.Repositories.Languages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +34,8 @@ public static class ConfigurePersistenceServices
 
     public static void AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<LanguageRepository>();
+        services.AddScoped<ILanguageQueries>(provider => provider.GetRequiredService<LanguageRepository>());
         //TODO add future repositories
     }
 }
