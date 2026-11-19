@@ -1,5 +1,8 @@
 using Application.Common.Interfaces.Queries.Languages;
+using Application.Common.Interfaces.Queries.Users;
+using Application.Common.Interfaces.Repositories.Users;
 using Infrastructure.Persistence.Repositories.Languages;
+using Infrastructure.Persistence.Repositories.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -32,10 +35,17 @@ public static class ConfigurePersistenceServices
         services.AddRepositories();
     }
 
-    public static void AddRepositories(this IServiceCollection services)
+    private static void AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<LanguageRepository>();
         services.AddScoped<ILanguageQueries>(provider => provider.GetRequiredService<LanguageRepository>());
+        services.AddScoped<UserRepository>();
+        services.AddScoped<IUserQueries>(provider => provider.GetRequiredService<UserRepository>());
+        services.AddScoped<IUserRepository>(provider => provider.GetRequiredService<UserRepository>());
+        services.AddScoped<UserPictureRepository>();
+        services.AddScoped<IUserPictureRepository>(provider => provider.GetRequiredService<UserPictureRepository>());
+        services.AddScoped<IUserBannerRepository>();
+        services.AddScoped<UserBannerRepository>(provider => provider.GetRequiredService<UserBannerRepository>());
         //TODO add future repositories
     }
 }
