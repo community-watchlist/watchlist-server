@@ -9,7 +9,7 @@ namespace Infrastructure.Persistence.Repositories.Watchlists;
 
 public class WatchlistItemRepository(ApplicationDbContext context) : IWatchlistItemQueries, IWatchlistItemRepository
 {
-    public async Task<IReadOnlyList<WatchlistItem>> GetByWatchlistId(
+    public async Task<IReadOnlyList<WatchlistItem>> GetAllByWatchlistId(
         WatchlistId watchlistId,
         CancellationToken cancellationToken)
     {
@@ -23,7 +23,7 @@ public class WatchlistItemRepository(ApplicationDbContext context) : IWatchlistI
                 x.Status == WatchlistItemStatus.OnHold ? 3 :
                 x.Status == WatchlistItemStatus.Completed ? 4 :
                 x.Status == WatchlistItemStatus.Dropped ? 5 : 6)
-            .ThenBy(x => x.Title)
+            .ThenBy(x => x.Title.OriginalTitle)
             .ToListAsync(cancellationToken);
         
         return await query;

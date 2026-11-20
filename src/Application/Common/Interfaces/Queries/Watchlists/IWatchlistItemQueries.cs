@@ -5,5 +5,5 @@ namespace Application.Common.Interfaces.Queries.Watchlists;
 
 public interface IWatchlistItemQueries
 {
-    Task<IReadOnlyList<WatchlistItem>> GetByWatchlistId(WatchlistId watchlistId, CancellationToken cancellationToken);
+    Task<IReadOnlyList<WatchlistItem>> GetAllByWatchlistId(WatchlistId watchlistId, CancellationToken cancellationToken);
 }
