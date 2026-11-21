@@ -21,8 +21,7 @@ public class Genre
 
     public static Genre New(
         GenreId id,
-        string originalName,
-        DateTime createdAt)
+        string originalName)
         => new(id, originalName, DateTime.UtcNow);
 
     public void Update(string originalName)
