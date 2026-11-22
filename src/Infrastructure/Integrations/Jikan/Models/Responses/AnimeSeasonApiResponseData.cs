@@ -23,7 +23,7 @@ public record AnimeSeasonApiResponseData(
             FetchedAt: DateTime.UtcNow,
             Rating: null,
             OriginalLanguage: null,
-            ExternalScore: Convert.ToSingle(response.Score),
+            ExternalScore: Single.TryParse(response.Score.ToString(), out float result) ? result : null,
             ExternalScoreCount: null,
             ReleaseDate: AnimeDateMapper.ToDateTime(response.StartDate, "YYYYMMDD"),
             Episodes: response.Episodes,

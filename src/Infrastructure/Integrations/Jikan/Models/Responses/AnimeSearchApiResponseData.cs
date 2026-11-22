@@ -23,7 +23,7 @@ public record AnimeSearchApiResponseData(
             FetchedAt: DateTime.UtcNow,
             Rating: AnimeRatingMapper.ToDomainModel(response.Rating),
             OriginalLanguage: null,
-            ExternalScore: Convert.ToSingle(response.Score),
+            ExternalScore: Single.TryParse(response.Score.ToString(), out float result) ? result : null,
             ExternalScoreCount: null,
             ReleaseDate: AnimeDateMapper.ToDateTime(response.StartDate, "YYYY-MM"),
             Episodes: response.Episodes,

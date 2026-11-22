@@ -25,7 +25,7 @@ public record AnimeDetailsApiResponseData(
             Rating: AnimeRatingMapper.ToDomainModel(response.Rating),
             BackdropImageUrl: null,
             OriginalLanguage: null,
-            ExternalScore: Convert.ToSingle(response.Score),
+            ExternalScore: Single.TryParse(response.Score.ToString(), out float result) ? result : null,
             ExternalScoreCount: response.ScoredBy,
             ReleaseDate: AnimeDateMapper.ToDateTime(response.Aired.From),
             ExternalPopularity: response.Popularity,
