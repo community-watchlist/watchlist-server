@@ -11,7 +11,7 @@ public static class AnimeDateMapper
         return new DateTime((DateOnly)dateOnly, new TimeOnly(0, 0, 0), DateTimeKind.Utc);
     }
 
-    public static DateTime? ToDateTime(string? value, string? pattern)
+    public static DateTime? ToDateTime(string? value, string? pattern = null)
     {
         if (value is null) return null;
 
@@ -44,6 +44,23 @@ public static class AnimeDateMapper
             if (!DateTime.TryParse(value, out var date)) return null;
 
             return date;
+        }
+
+        return null;
+    }
+
+    public static int? ToMinutes(string? value, string? pattern = null)
+    {
+        if (value == null) return null;
+
+        if (pattern == "HH:MM:SS")
+        {
+            var result = 0;
+            
+            var parts = value.Split(':');
+            result += int.TryParse(parts[0], out int hours) ? hours * 60 : 0;
+            result += int.TryParse(parts[1], out int minutes) ? minutes : 0;
+            return result;
         }
 
         return null;
