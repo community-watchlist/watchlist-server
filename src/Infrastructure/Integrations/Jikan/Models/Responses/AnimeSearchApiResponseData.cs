@@ -6,7 +6,7 @@ namespace Infrastructure.Integrations.Jikan.Models.Responses;
 
 public record AnimeSearchApiResponseData(
     List<AnimeSearchData> Data,
-    ResponseSearchMeta Meta
+    ResponseMetaWithPagination Meta
 )
 {
     public static TitleMetadata ToMetadata(AnimeSearchData response)
@@ -45,15 +45,15 @@ public record AnimeSearchData(
     string? Rating
 );
     
-public record ResponseSearchMeta(
+public record ResponseMetaWithPagination(
     bool Cached,
     bool Stale,
     bool RefreshFailed,
     DateTime FetchedAt,
-    ResponseSearchPagination Pagination
+    ResponsePagination Pagination
 );
 
-public record ResponseSearchPagination(
+public record ResponsePagination(
     int Page,
     int Limit,
     int Count,

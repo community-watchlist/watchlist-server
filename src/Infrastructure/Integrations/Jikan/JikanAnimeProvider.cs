@@ -17,7 +17,7 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
         if (response == null)
             return [];
         
-        return response.Data.Select(AnimeApiResponseData.ToMetadata).ToList();
+        return response.Data.Select(AnimeSeasonApiResponseData.ToMetadata).ToList();
     }
 
     public async Task<IReadOnlyList<TitleMetadata>> GetAnimeBySeason(string year, string season, CancellationToken cancellationToken)
@@ -27,7 +27,7 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
         if (response == null)
             return [];
         
-        return response.Data.Select(AnimeApiResponseData.ToMetadata).ToList();
+        return response.Data.Select(AnimeSeasonApiResponseData.ToMetadata).ToList();
     }
 
     public async Task<IReadOnlyList<TitleMetadata>> GetTopRated(CancellationToken cancellationToken)
@@ -37,7 +37,7 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
         if (response == null)
             return [];
         
-        return response.Data.Select(AnimeApiResponseData.ToMetadata).ToList();
+        return response.Data.Select(AnimeTopApiResponseData.ToMetadata).ToList();
     }
 
     public async Task<IReadOnlyList<TitleMetadata>> GetUpcomingSeason(CancellationToken cancellationToken)
@@ -47,7 +47,7 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
         if (response == null)
             return [];
         
-        return response.Data.Select(AnimeApiResponseData.ToMetadata).ToList();
+        return response.Data.Select(AnimeSeasonApiResponseData.ToMetadata).ToList();
     }
 
     public async Task<IReadOnlyList<TitleMetadata>> GetBySearch(string query, CancellationToken cancellationToken)

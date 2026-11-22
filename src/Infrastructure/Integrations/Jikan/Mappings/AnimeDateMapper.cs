@@ -11,9 +11,16 @@ public static class AnimeDateMapper
         return new DateTime((DateOnly)dateOnly, new TimeOnly(0, 0, 0), DateTimeKind.Utc);
     }
 
-    public static DateTime? ToDateTime(string? value, string pattern) // TODO: handle "Mar 2026 -", "Oct 2011 - Sep 2014"
+    public static DateTime? ToDateTime(string? value, string? pattern)
     {
         if (value is null) return null;
+
+        if (pattern == null)
+        {
+            if (!DateTime.TryParse(value, out var date)) return null;
+
+            return date;
+        } 
         
         if (pattern == "YYYYMMDD")
         {
@@ -30,6 +37,13 @@ public static class AnimeDateMapper
             if (!int.TryParse(value.Substring(5, 2), out int month)) return null;
             
             return new DateTime(year, month, 0, 0, 0, 0, DateTimeKind.Utc);
+        }
+
+        if (pattern == "MMM YYYY")
+        {
+            if (!DateTime.TryParse(value, out var date)) return null;
+
+            return date;
         }
 
         return null;

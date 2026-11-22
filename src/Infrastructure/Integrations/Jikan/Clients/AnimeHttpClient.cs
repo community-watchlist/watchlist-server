@@ -5,7 +5,7 @@ namespace Infrastructure.Integrations.Jikan.Clients;
 
 public class AnimeHttpClient(HttpClient httpClient)
 {
-    public async Task<AnimeApiResponseData?> GetCurrentSeason(CancellationToken cancellationToken)
+    public async Task<AnimeSeasonApiResponseData?> GetCurrentSeason(CancellationToken cancellationToken)
     {
         using var response = await httpClient.GetAsync("seasons/now", cancellationToken);
 
@@ -14,10 +14,10 @@ public class AnimeHttpClient(HttpClient httpClient)
             return null;
         }
         
-        return response.Content.ReadFromJsonAsync<AnimeApiResponseData>(cancellationToken).Result;
+        return response.Content.ReadFromJsonAsync<AnimeSeasonApiResponseData>(cancellationToken).Result;
     }
     
-    public async Task<AnimeApiResponseData?> GetAnimeBySeason(string year, string season, CancellationToken cancellationToken)
+    public async Task<AnimeSeasonApiResponseData?> GetAnimeBySeason(string year, string season, CancellationToken cancellationToken)
     {
         using var response = await httpClient.GetAsync($"seasons/{year}/{season}", cancellationToken);
 
@@ -26,10 +26,10 @@ public class AnimeHttpClient(HttpClient httpClient)
             return null;
         }
         
-        return response.Content.ReadFromJsonAsync<AnimeApiResponseData>(cancellationToken).Result;
+        return response.Content.ReadFromJsonAsync<AnimeSeasonApiResponseData>(cancellationToken).Result;
     }
     
-    public async Task<AnimeApiResponseData?> GetTopRated(CancellationToken cancellationToken)
+    public async Task<AnimeTopApiResponseData?> GetTopRated(CancellationToken cancellationToken)
     {
         using var response = await httpClient.GetAsync("top/anime", cancellationToken);
 
@@ -38,10 +38,10 @@ public class AnimeHttpClient(HttpClient httpClient)
             return null;
         }
         
-        return response.Content.ReadFromJsonAsync<AnimeApiResponseData>(cancellationToken).Result;
+        return response.Content.ReadFromJsonAsync<AnimeTopApiResponseData>(cancellationToken).Result;
     }
     
-    public async Task<AnimeApiResponseData?> GetUpcomingSeason(CancellationToken cancellationToken)
+    public async Task<AnimeSeasonApiResponseData?> GetUpcomingSeason(CancellationToken cancellationToken)
     {
         using var response = await httpClient.GetAsync("seasons/upcoming", cancellationToken);
 
@@ -50,7 +50,7 @@ public class AnimeHttpClient(HttpClient httpClient)
             return null;
         }
         
-        return response.Content.ReadFromJsonAsync<AnimeApiResponseData>(cancellationToken).Result;
+        return response.Content.ReadFromJsonAsync<AnimeSeasonApiResponseData>(cancellationToken).Result;
     }
     
     public async Task<AnimeSearchApiResponseData?> GetBySearch(string query, CancellationToken cancellationToken)

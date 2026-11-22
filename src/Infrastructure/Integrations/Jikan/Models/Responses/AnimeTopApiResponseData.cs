@@ -4,12 +4,12 @@ using Infrastructure.Integrations.Jikan.Mappings;
 
 namespace Infrastructure.Integrations.Jikan.Models.Responses;
 
-public record AnimeApiResponseData(
-    List<AnimeData> Data,
-    ResponseMeta Meta
+public record AnimeTopApiResponseData(
+    List<AnimeTopData> Data,
+    ResponseMetaWithPagination Meta
 )
 {
-    public static TitleMetadata ToMetadata(AnimeData response)
+    public static TitleMetadata ToMetadata(AnimeTopData response)
         => new TitleMetadata(
             Type: TitleType.Anime,
             Provider: "jikan-edge",
@@ -25,12 +25,12 @@ public record AnimeApiResponseData(
             OriginalLanguage: null,
             ExternalScore: Convert.ToSingle(response.Score),
             ExternalScoreCount: null,
-            ReleaseDate: AnimeDateMapper.ToDateTime(response.StartDate, "YYYYMMDD"),
+            ReleaseDate: AnimeDateMapper.ToDateTime(response.StartDate?.Split('-')[0], "MMM YYYY"),
             Episodes: response.Episodes,
             MediaType: response.Type);
 }
 
-public record AnimeData(
+public record AnimeTopData(
     int MalId,
     string Title,
     string ImageUrl,
@@ -38,6 +38,5 @@ public record AnimeData(
     string Type,
     int? Episodes,
     string? StartDate,
-    int? Members,
-    bool? Continuing
+    int? Members
 );
