@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces.Integrations.Anime;
+using Application.Episodes.Dtos;
 using Application.Titles.Dtos;
 using Infrastructure.Integrations.Jikan.Clients;
 using Infrastructure.Integrations.Jikan.Models.Responses;
@@ -69,6 +70,21 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
             return null;
 
         return AnimeDetailsApiResponseData.ToMetadata(response.Data);
+    }
+
+    public async Task<IReadOnlyList<EpisodeMetadata>> GetEpisodesByAnimeId(string animeId, string provider, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<Option<EpisodeMetadata>> GetEpisodeByPosition(string animeId, string provider, string position, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<Option<EpisodeMetadata>> GetEpisodeById(string episodeId, string provider, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 
     private void VerifyProvider(string provider)
