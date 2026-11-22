@@ -74,17 +74,32 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
 
     public async Task<IReadOnlyList<EpisodeMetadata>> GetEpisodesByAnimeId(string animeId, string provider, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        VerifyProvider(provider);
+        var response = await animeHttpClient.GetEpisodesByAnimeId(animeId, cancellationToken);
+
+        if (response == null)
+            return [];
+
+        return response.Data.Select(x => EpisodeApiResponseData.ToMetadata(x, animeId)).ToList();
     }
 
-    public async Task<Option<EpisodeMetadata>> GetEpisodeByPosition(string animeId, string provider, string position, CancellationToken cancellationToken)
+    public async Task<Option<EpisodeMetadata>> GetEpisodeByPosition(string animeId, string position, string provider, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        VerifyProvider(provider);
+        var response = await animeHttpClient.GetEpisodesByAnimeIdAndPosition(animeId, position, cancellationToken);
+
+        if (response == null)
+            return null;
+
+        return EpisodeDetailsApiResponseData.ToMetadata(response.Data);
     }
 
     public async Task<Option<EpisodeMetadata>> GetEpisodeById(string episodeId, string provider, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        // As episodeId from that provider is encoded like ANIMEID@POSITION
+        var parameters = episodeId.Split('@');
+
+        return await GetEpisodeByPosition(parameters[0], parameters[1], provider, cancellationToken);
     }
 
     private void VerifyProvider(string provider)

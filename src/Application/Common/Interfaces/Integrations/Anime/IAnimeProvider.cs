@@ -14,6 +14,6 @@ public interface IAnimeProvider
     Task<Option<TitleDetailsMetadata>> GetAnimeById(string animeId, string provider, CancellationToken cancellationToken);
     
     Task<IReadOnlyList<EpisodeMetadata>> GetEpisodesByAnimeId(string animeId, string provider, CancellationToken cancellationToken);
-    Task<Option<EpisodeMetadata>> GetEpisodeByPosition(string animeId, string provider, string position, CancellationToken cancellationToken);
+    Task<Option<EpisodeMetadata>> GetEpisodeByPosition(string animeId, string position, string provider, CancellationToken cancellationToken);
     Task<Option<EpisodeMetadata>> GetEpisodeById(string episodeId, string provider, CancellationToken cancellationToken);
 }

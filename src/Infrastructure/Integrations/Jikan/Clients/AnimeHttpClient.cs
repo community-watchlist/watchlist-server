@@ -76,4 +76,28 @@ public class AnimeHttpClient(HttpClient httpClient)
         
         return response.Content.ReadFromJsonAsync<AnimeDetailsApiResponseData>(cancellationToken).Result;
     }
+    
+    public async Task<EpisodeApiResponseData?> GetEpisodesByAnimeId(string animeId, CancellationToken cancellationToken)
+    {
+        using var response = await httpClient.GetAsync($"anime/{animeId}/episodes", cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
+        
+        return response.Content.ReadFromJsonAsync<EpisodeApiResponseData>(cancellationToken).Result;
+    }
+    
+    public async Task<EpisodeDetailsApiResponseData?> GetEpisodesByAnimeIdAndPosition(string animeId, string position, CancellationToken cancellationToken)
+    {
+        using var response = await httpClient.GetAsync($"anime/{animeId}/episodes/{position}", cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
+        
+        return response.Content.ReadFromJsonAsync<EpisodeDetailsApiResponseData>(cancellationToken).Result;
+    }
 }
