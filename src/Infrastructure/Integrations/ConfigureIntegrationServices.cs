@@ -17,7 +17,7 @@ public static class ConfigureIntegrationServices
         {
             var baseUrl = configuration.GetSection("Integrations:JikanApi:BaseUrl").Value;
             
-            httpClient.BaseAddress = new Uri($"{baseUrl!.TrimEnd('/')}/anime/");
+            httpClient.BaseAddress = new Uri($"{baseUrl!.TrimEnd('/')}/");
         });
     }
 }
