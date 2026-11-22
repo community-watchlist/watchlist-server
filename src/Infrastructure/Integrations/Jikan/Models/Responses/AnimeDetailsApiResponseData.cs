@@ -5,48 +5,51 @@ using Infrastructure.Integrations.Jikan.Mappings;
 
 namespace Infrastructure.Integrations.Jikan.Models.Responses;
 
-public record AnimeDetailsApiResponse(
-    AnimeData Data,
+public record AnimeDetailsApiResponseData(
+    AnimeDetailsData Data,
     ResponseMeta Meta
 )
 {
-    public static TitleDetailsMetadata ToMetadata(AnimeDetailsApiResponse response)
+    public static TitleDetailsMetadata ToMetadata(AnimeDetailsData response)
         => new(
             Type: TitleType.Anime,
             Provider: "jikan-edge",
-            ExternalId: response.Data.MalId.ToString(),
-            OriginalTitle: response.Data.Title,
-            Overview: response.Data.Synopsis,
-            TitleReleaseStatus: AnimeReleaseStatusMapper.ToDomainModel(response.Data.Status),
+            ExternalId: response.MalId.ToString(),
+            OriginalTitle: response.Title,
+            Overview: response.Synopsis,
+            Poster: new TitlePosterMetadata(
+                OriginalFilename: response.ImageUrl.Split('/').Last().Split('.').First(),
+                Url: response.ImageUrl),
+            TitleReleaseStatus: AnimeReleaseStatusMapper.ToDomainModel(response.Status),
             FetchedAt: DateTime.UtcNow,
-            Rating: AnimeRatingMapper.ToDomainModel(response.Data.Rating),
+            Rating: AnimeRatingMapper.ToDomainModel(response.Rating),
             BackdropImageUrl: null,
             OriginalLanguage: null,
-            ExternalScore: Convert.ToSingle(response.Data.Score),
-            ExternalScoreCount: response.Data.ScoredBy,
-            ReleaseDate: AnimeDateMapper.ToDateTime(response.Data.Aired.From),
-            ExternalPopularity: response.Data.Popularity,
-            Runtime: AnimeDurationMapper.ToMinutes(response.Data.Duration, response.Data.Episodes),
-            Episodes: response.Data.Episodes,
-            MediaType: response.Data.Type,
-            AverageRuntime: AnimeDurationMapper.ToMinutes(response.Data.Duration, response.Data.Episodes),
-            Aired: response.Data.Aired.From is null && response.Data.Aired.To is null
+            ExternalScore: Convert.ToSingle(response.Score),
+            ExternalScoreCount: response.ScoredBy,
+            ReleaseDate: AnimeDateMapper.ToDateTime(response.Aired.From),
+            ExternalPopularity: response.Popularity,
+            Runtime: AnimeDurationMapper.ToMinutes(response.Duration, response.Episodes),
+            Episodes: response.Episodes,
+            MediaType: response.Type,
+            AverageRuntime: AnimeDurationMapper.ToMinutes(response.Duration, response.Episodes),
+            Aired: response.Aired.From is null && response.Aired.To is null
                 ? null
                 : AiredData.New(
-                    AnimeDateMapper.ToDateTime(response.Data.Aired.From),
-                    AnimeDateMapper.ToDateTime(response.Data.Aired.To)),
-            Broadcast: AnimeDateMapper.ToWeekDay(response.Data.Broadcast.Day) is { } time 
-                ? BroadcastData.New(time, response.Data.Broadcast.Time)
+                    AnimeDateMapper.ToDateTime(response.Aired.From),
+                    AnimeDateMapper.ToDateTime(response.Aired.To)),
+            Broadcast: AnimeDateMapper.ToWeekDay(response.Broadcast.Day) is { } time 
+                ? BroadcastData.New(time, response.Broadcast.Time)
                 : null,
-            AlternativeLinks: [Link.New("MyAnimeList", response.Data.Url)],
-            SocialLinks: response.Data.ExternalLinks.Select(x => Link.New(x.Name, x.Url)).ToList(),
-            StreamingLinks: response.Data.ExternalLinks.Select(x => Link.New(x.Name, x.Url)).ToList(),
-            Relations: response.Data.Relations.Select(x 
+            AlternativeLinks: [Link.New("MyAnimeList", response.Url)],
+            SocialLinks: response.ExternalLinks.Select(x => Link.New(x.Name, x.Url)).ToList(),
+            StreamingLinks: response.ExternalLinks.Select(x => Link.New(x.Name, x.Url)).ToList(),
+            Relations: response.Relations.Select(x 
                 => Relation.New(AnimeRelationMapper.ToDomainModel(x.Relation), x.Title, x.MalId.ToString())).ToList(),
-            Genres: response.Data.Genres.Select(x => new GenreMetadata(x.MalId.ToString(), x.Name)).ToList());
-};
+            Genres: response.Genres.Select(x => new GenreMetadata(x.MalId.ToString(), x.Name)).ToList());
+}
 
-public record AnimeData(
+public record AnimeDetailsData(
     int MalId,
     string Url,
     string Title,

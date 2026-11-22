@@ -1,0 +1,62 @@
+﻿using Application.Titles.Dtos;
+using Domain.Titles;
+using Infrastructure.Integrations.Jikan.Mappings;
+
+namespace Infrastructure.Integrations.Jikan.Models.Responses;
+
+public record AnimeSearchApiResponseData(
+    List<AnimeSearchData> Data,
+    ResponseSearchMeta Meta
+)
+{
+    public static TitleMetadata ToMetadata(AnimeSearchData response)
+        => new TitleMetadata(
+            Type: TitleType.Anime,
+            Provider: "jikan-edge",
+            ExternalId: response.MalId.ToString(),
+            OriginalTitle: response.Title,
+            Overview: response.Synopsis,
+            Poster: new TitlePosterMetadata(
+                OriginalFilename: response.ImageUrl.Split('/').Last().Split('.').First(),
+                Url: response.ImageUrl),
+            TitleReleaseStatus: null,
+            FetchedAt: DateTime.UtcNow,
+            Rating: AnimeRatingMapper.ToDomainModel(response.Rating),
+            OriginalLanguage: null,
+            ExternalScore: Convert.ToSingle(response.Score),
+            ExternalScoreCount: null,
+            ReleaseDate: AnimeDateMapper.ToDateTime(response.StartDate, "YYYY-MM"),
+            Episodes: response.Episodes,
+            MediaType: response.Type);
+}
+
+public record AnimeSearchData(
+    int MalId,
+    string Url,
+    string Title,
+    string ImageUrl,
+    string? Synopsis,
+    string Type,
+    double? Score,
+    string? StartDate,
+    string? EndDate,
+    int? Members,
+    int? Episodes,
+    string? Rating
+);
+    
+public record ResponseSearchMeta(
+    bool Cached,
+    bool Stale,
+    bool RefreshFailed,
+    DateTime FetchedAt,
+    ResponseSearchPagination Pagination
+);
+
+public record ResponseSearchPagination(
+    int Page,
+    int Limit,
+    int Count,
+    int? Total,
+    bool HasNextPage
+);
