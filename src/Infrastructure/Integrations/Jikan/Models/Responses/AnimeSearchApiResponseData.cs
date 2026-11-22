@@ -44,19 +44,3 @@ public record AnimeSearchData(
     int? Episodes,
     string? Rating
 );
-    
-public record ResponseMetaWithPagination(
-    bool Cached,
-    bool Stale,
-    bool RefreshFailed,
-    DateTime FetchedAt,
-    ResponsePagination Pagination
-);
-
-public record ResponsePagination(
-    int Page,
-    int Limit,
-    int Count,
-    int? Total,
-    bool HasNextPage
-);

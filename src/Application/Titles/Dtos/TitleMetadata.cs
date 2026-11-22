@@ -11,7 +11,7 @@ public record TitleMetadata(
     string? Overview,
     TitlePosterMetadata? Poster,
     TitleReleaseStatus? TitleReleaseStatus,
-    DateTime? FetchedAt,
+    DateTime FetchedAt,
     TitleRating? Rating,
     string? OriginalLanguage,
     float? ExternalScore,

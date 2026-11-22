@@ -144,10 +144,3 @@ public record StreamingPlatform(
     string Url,
     bool Available
 );
-
-public record ResponseMeta(
-    bool Cached,
-    bool Stale,
-    bool RefreshFailed,
-    DateTime FetchedAt
-);

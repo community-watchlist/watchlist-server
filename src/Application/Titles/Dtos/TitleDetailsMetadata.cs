@@ -11,7 +11,7 @@ public record TitleDetailsMetadata(
     string? Overview,
     TitlePosterMetadata? Poster,
     TitleReleaseStatus TitleReleaseStatus,
-    DateTime? FetchedAt,
+    DateTime FetchedAt,
     TitleRating? Rating,
     string? BackdropImageUrl,
     string? OriginalLanguage,
