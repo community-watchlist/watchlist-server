@@ -80,6 +80,17 @@ public class TitleRepository(ApplicationDbContext context) : ITitleRepository, I
                 && type == null || x.Type.Equals(type), cancellationToken);
         return entity ?? Option<Title>.None;
     }
+    
+    public async Task<Option<Title>> GetBySlug(string slug, TitleType? type, CancellationToken cancellationToken)
+    {
+        var entity = await context.Titles
+            .AsNoTracking()
+            .Include(x => x.Properties)
+            .FirstOrDefaultAsync(x => 
+                x.Properties!.Slug == slug 
+                && type == null || x.Type.Equals(type), cancellationToken);
+        return entity ?? Option<Title>.None;
+    }
 
     public async Task<Option<Title>> GetByIdWithDetails(TitleId titleId, TitleType? type, CancellationToken cancellationToken)
     {

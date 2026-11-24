@@ -16,5 +16,6 @@ public interface ITitleQueries
         DateTime? createdAtTo,
         CancellationToken cancellationToken);
     Task<Option<Title>> GetById(TitleId titleId, TitleType? type, CancellationToken cancellationToken);
+    Task<Option<Title>> GetBySlug(string slug, TitleType? type, CancellationToken cancellationToken);
     Task<Option<Title>> GetByIdWithDetails(TitleId titleId, TitleType? type, CancellationToken cancellationToken);
 }
