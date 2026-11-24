@@ -73,16 +73,17 @@ public class TitleRepository(ApplicationDbContext context) : ITitleRepository, I
 
     public async Task<Option<Title>> GetById(TitleId titleId, TitleType? type, CancellationToken cancellationToken)
     {
-        return await context.Titles
+        var entity = await context.Titles
             .AsNoTracking()
             .FirstOrDefaultAsync(x => 
                 x.Id == titleId 
                 && type == null || x.Type.Equals(type), cancellationToken);
+        return entity ?? Option<Title>.None;
     }
 
     public async Task<Option<Title>> GetByIdWithDetails(TitleId titleId, TitleType? type, CancellationToken cancellationToken)
     {
-        return await context.Titles
+        var entity = await context.Titles
             .AsNoTracking()
             .Include(x => x.TitleGenres)
                 .ThenInclude(x => x.Genre)
@@ -90,15 +91,17 @@ public class TitleRepository(ApplicationDbContext context) : ITitleRepository, I
             .FirstOrDefaultAsync(x => 
                 x.Id == titleId 
                 && type == null || x.Type.Equals(type), cancellationToken);
+        return entity ?? Option<Title>.None;
     }
 
     public async Task<Option<Title>> GetByExternalId(string externalId, string provider, CancellationToken cancellationToken)
     {
-        return await context.Titles
+        var entity = await context.Titles
             .AsNoTracking()
             .FirstOrDefaultAsync(x => 
                 x.ExternalId.Equals(externalId) 
                 && x.Provider.Equals(provider), cancellationToken);
+        return entity ?? Option<Title>.None;
     }
 
     public async Task<Title> Add(Title title, CancellationToken cancellationToken)

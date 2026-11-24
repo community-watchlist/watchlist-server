@@ -11,23 +11,26 @@ public class TitlePropertiesRepository(ApplicationDbContext context) : ITitlePro
 {
     public async Task<Option<TitleProperties>> GetById(TitlePropertiesId titlePropertiesId, CancellationToken cancellationToken)
     {
-        return await context.TitleProperties
+        var entity = await context.TitleProperties
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == titlePropertiesId, cancellationToken);
+        return entity ?? Option<TitleProperties>.None;
     }
 
     public async Task<Option<TitleProperties>> GetBySlug(string slug, CancellationToken cancellationToken)
     {
-        return await context.TitleProperties
+        var entity = await context.TitleProperties
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Slug.Equals(slug), cancellationToken);
+        return entity ?? Option<TitleProperties>.None;
     }
     
     public async Task<Option<TitleProperties>> GetByTitleId(TitleId titleId, CancellationToken cancellationToken)
     {
-        return await context.TitleProperties
+        var entity = await context.TitleProperties
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.TitleId == titleId, cancellationToken);
+        return entity ?? Option<TitleProperties>.None;
     }
 
     public async Task<TitleProperties> Add(TitleProperties titleProperties, CancellationToken cancellationToken)

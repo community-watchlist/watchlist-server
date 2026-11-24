@@ -10,8 +10,9 @@ public class TitlePosterRepository(ApplicationDbContext context) : ITitlePosterR
 {
     public async Task<Option<TitlePoster>> GetByTitleId(TitleId titleId, CancellationToken cancellationToken)
     {
-        return await context.TitlePosters
+        var entity = await context.TitlePosters
             .FirstOrDefaultAsync(x => x.TitleId == titleId, cancellationToken);
+        return entity ?? Option<TitlePoster>.None;
     }
 
     public async Task<TitlePoster> Add(TitlePoster titlePoster, CancellationToken cancellationToken)
