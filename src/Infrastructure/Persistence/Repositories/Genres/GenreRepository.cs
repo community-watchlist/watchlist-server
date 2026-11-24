@@ -17,16 +17,18 @@ public class GenreRepository(ApplicationDbContext context) : IGenreRepository, I
 
     public async Task<Option<Genre>> GetById(GenreId genreId, CancellationToken cancellationToken)
     {
-        return await context.Genres
+        var entity = await context.Genres
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == genreId, cancellationToken);
+        return entity ?? Option<Genre>.None;
     }
 
     public async Task<Option<Genre>> GetByName(string name, CancellationToken cancellationToken)
     {
-        return await context.Genres
+        var entity = await context.Genres
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.OriginalName.ToLower().Contains(name.Trim().ToLower()), cancellationToken);
+        return entity ?? Option<Genre>.None;
     }
 
     public async Task<Genre> Add(Genre genre, CancellationToken cancellationToken)
