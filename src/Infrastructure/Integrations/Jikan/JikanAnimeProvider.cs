@@ -7,13 +7,17 @@ using LanguageExt;
 
 namespace Infrastructure.Integrations.Jikan;
 
-public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvider
+public class JikanAnimeProvider(
+    JikanAnimeHttpClient animeHttpClient,
+    JikanSeasonsHttpClient seasonsHttpClient,
+    JikanTopHttpClient topHttpClient)
+    : IAnimeProvider
 {
     private const string Provider = "jikan-edge";
     
     public async Task<IReadOnlyList<TitleMetadata>> GetCurrentSeason(CancellationToken cancellationToken)
     {
-        var response = await animeHttpClient.GetCurrentSeason(cancellationToken);
+        var response = await seasonsHttpClient.GetCurrentSeason(cancellationToken);
         
         if (response == null)
             return [];
@@ -23,7 +27,7 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
 
     public async Task<IReadOnlyList<TitleMetadata>> GetAnimeBySeason(string year, string season, CancellationToken cancellationToken)
     {
-        var response = await animeHttpClient.GetAnimeBySeason(year, season, cancellationToken);
+        var response = await seasonsHttpClient.GetAnimeBySeason(year, season, cancellationToken);
         
         if (response == null)
             return [];
@@ -33,7 +37,7 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
 
     public async Task<IReadOnlyList<TitleMetadata>> GetTopRated(CancellationToken cancellationToken)
     {
-        var response = await animeHttpClient.GetTopRated(cancellationToken);
+        var response = await topHttpClient.GetTopRated(cancellationToken);
         
         if (response == null)
             return [];
@@ -43,7 +47,7 @@ public class JikanAnimeProvider(AnimeHttpClient animeHttpClient) : IAnimeProvide
 
     public async Task<IReadOnlyList<TitleMetadata>> GetUpcomingSeason(CancellationToken cancellationToken)
     {
-        var response = await animeHttpClient.GetUpcomingSeason(cancellationToken);
+        var response = await seasonsHttpClient.GetUpcomingSeason(cancellationToken);
         
         if (response == null)
             return [];
