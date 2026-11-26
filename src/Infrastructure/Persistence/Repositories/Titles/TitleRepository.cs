@@ -96,7 +96,7 @@ public class TitleRepository(ApplicationDbContext context) : ITitleRepository, I
     {
         var entity = await context.Titles
             .AsNoTracking()
-            .Include(x => x.TitleGenres)
+            .Include(x => x.TitleGenres!)
                 .ThenInclude(x => x.Genre)
             .Include(x => x.Properties)
             .FirstOrDefaultAsync(x => 
