@@ -39,13 +39,17 @@ public static class ConfigurePersistenceServices
     {
         services.AddScoped<LanguageRepository>();
         services.AddScoped<ILanguageQueries>(provider => provider.GetRequiredService<LanguageRepository>());
+
         services.AddScoped<UserRepository>();
         services.AddScoped<IUserQueries>(provider => provider.GetRequiredService<UserRepository>());
         services.AddScoped<IUserRepository>(provider => provider.GetRequiredService<UserRepository>());
+
         services.AddScoped<UserPictureRepository>();
         services.AddScoped<IUserPictureRepository>(provider => provider.GetRequiredService<UserPictureRepository>());
-        services.AddScoped<IUserBannerRepository>();
-        services.AddScoped<UserBannerRepository>(provider => provider.GetRequiredService<UserBannerRepository>());
+
+        services.AddScoped<UserBannerRepository>();
+        services.AddScoped<IUserBannerRepository>(provider => provider.GetRequiredService<UserBannerRepository>());
+
         //TODO add future repositories
     }
 }
