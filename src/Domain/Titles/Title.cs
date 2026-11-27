@@ -23,9 +23,9 @@ public class Title
 
     public TitleProperties? Properties { get; } = null;
     public TitlePoster? Poster { get; } = null;
-    public ICollection<TitleGenre> TitleGenres { get; } = [];
-    public ICollection<Episode> Episodes { get; } = [];
-    public ICollection<TitleTranslation> TitleTranslations { get; } = [];
+    public ICollection<TitleGenre>? TitleGenres { get; } = null;
+    public ICollection<Episode>? Episodes { get; } = null;
+    public ICollection<TitleTranslation>? TitleTranslations { get; } = null;
 
     private Title(
         TitleId id,
