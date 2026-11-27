@@ -61,7 +61,7 @@ public class EpisodeRepository(ApplicationDbContext context) : IEpisodeRepositor
 
     public async Task<Episode> Add(Episode episode, CancellationToken cancellationToken)
     {
-        context.Episodes.Add(episode);
+        await context.Episodes.AddAsync(episode, cancellationToken);
         return episode;
     }
 
