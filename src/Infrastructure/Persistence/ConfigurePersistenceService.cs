@@ -3,6 +3,7 @@ using Application.Common.Interfaces.Queries.Users;
 using Application.Common.Interfaces.Repositories.Users;
 using Infrastructure.Persistence.Repositories.Languages;
 using Infrastructure.Persistence.Repositories.Users;
+using Infrastructure.Persistence.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +32,7 @@ public static class ConfigurePersistenceServices
                 warnings.Ignore(RelationalEventId.PendingModelChangesWarning);
             }));
 
+        services.AddScoped<LanguageSeeder>();
         services.AddScoped<ApplicationDbContextInitialiser>();
         services.AddRepositories();
     }
